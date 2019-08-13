@@ -1,0 +1,19 @@
+* In Minecraft:
+	* Load world
+	* /advancement grant @s everything
+	* grab .minecraft/saves/World/advancements/uuid.json
+* Download pages from wiki:
+	* https://minecraft.gamepedia.com/Advancements?action=raw
+	* https://minecraft.gamepedia.com/Module:InvSprite?action=raw
+	* https://minecraft.gamepedia.com/File:InvSprite.png
+	* https://minecraft.gamepedia.com/File:Advancement-{plain,oval,fancy}-{raw,worn}.png
+* Run ./scrape_wiki.py - will generate initial text data for the advancement list
+	* copy output and paste it as the ['advancements'] section in raw_advancement_data.json
+* Edit the other sections of raw_advancement_data.json manually
+	* The ['spritesheet'] section based on the shape of the InvSprite.png image
+	* The ['categories'] section needs to be entered by hand
+		* The ['icon'] value is the "pos" value for the appropriate icon in invsprite.txt, minus 1
+	* The ['advancements'] section should be given a once-over to make sure it looks good
+		* Especially the ['criteria'][#]['description'] messages
+* Run ./gen_spritesheet.py - will generate spritesheet.png and advancement_data.json
+	* These are the files that are actually shipped as part of the package
