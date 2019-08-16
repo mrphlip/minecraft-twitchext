@@ -116,7 +116,8 @@
 					"id": "iron_leggings",
 					"description": "Iron Leggings"
 				}
-			]
+			],
+			"mode": "any"
 		},
 		{
 			"id": "minecraft:story/deflect_arrow",
@@ -268,7 +269,8 @@
 					"id": "diamond_leggings",
 					"description": "Diamond Leggings"
 				}
-			]
+			],
+			"mode": "any"
 		},
 		{
 			"id": "minecraft:story/enchant_item",
@@ -608,7 +610,8 @@
 					"id": "killed_something",
 					"description": "Killed Something"
 				}
-			]
+			],
+			"mode": "any"
 		},
 		{
 			"id": "minecraft:adventure/voluntary_exile",
@@ -746,7 +749,8 @@
 					"id": "minecraft:zombie_villager",
 					"description": "Zombie Villager"
 				}
-			]
+			],
+			"mode": "any"
 		},
 		{
 			"id": "minecraft:adventure/throw_trident",
@@ -912,7 +916,8 @@
 					"id": "minecraft:zombie_villager",
 					"description": "Zombie Villager"
 				}
-			]
+			],
+			"mode": "all"
 		},
 		{
 			"id": "minecraft:adventure/totem_of_undying",
@@ -1202,7 +1207,8 @@
 					"id": "minecraft:wooded_mountains",
 					"description": "Wooded Mountains"
 				}
-			]
+			],
+			"mode": "all"
 		},
 		{
 			"id": "minecraft:husbandry/root",
@@ -1296,7 +1302,8 @@
 					"id": "minecraft:wolf",
 					"description": "Wolf"
 				}
-			]
+			],
+			"mode": "all"
 		},
 		{
 			"id": "minecraft:husbandry/tame_an_animal",
@@ -1364,7 +1371,8 @@
 					"id": "textures/entity/cat/white.png",
 					"description": "White"
 				}
-			]
+			],
+			"mode": "all"
 		},
 		{
 			"id": "minecraft:husbandry/fishy_business",
@@ -1390,7 +1398,8 @@
 					"id": "tropical_fish",
 					"description": "Tropical Fish"
 				}
-			]
+			],
+			"mode": "any"
 		},
 		{
 			"id": "minecraft:husbandry/tactical_fishing",
@@ -1416,7 +1425,8 @@
 					"id": "tropical_fish_bucket",
 					"description": "Bucket of Tropical Fish"
 				}
-			]
+			],
+			"mode": "any"
 		},
 		{
 			"id": "minecraft:husbandry/plant_seed",
@@ -1432,7 +1442,7 @@
 				},
 				{
 					"id": "melon_stem",
-					"description": "Melon Stem"
+					"description": "Melon"
 				},
 				{
 					"id": "nether_wart",
@@ -1440,13 +1450,14 @@
 				},
 				{
 					"id": "pumpkin_stem",
-					"description": "Pumpkin Stem"
+					"description": "Pumpkin"
 				},
 				{
 					"id": "wheat",
 					"description": "Wheat"
 				}
-			]
+			],
+			"mode": "any"
 		},
 		{
 			"id": "minecraft:husbandry/balanced_diet",
@@ -1608,7 +1619,8 @@
 					"id": "tropical_fish",
 					"description": "Tropical Fish"
 				}
-			]
+			],
+			"mode": "all"
 		},
 		{
 			"id": "minecraft:husbandry/break_diamond_hoe",

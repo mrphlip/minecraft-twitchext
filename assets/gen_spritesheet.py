@@ -4,6 +4,8 @@ import png
 import collections
 import json
 
+OUT_PATH = '../extension/public/'
+
 Image = collections.namedtuple('Image', ['width', 'height', 'image'])
 def read_image(filename):
 	width, height, data, metadata = png.Reader(filename=filename).asRGBA8()
@@ -32,12 +34,16 @@ class Spritesheet:
 		self.sheetheight = sheetheight
 		self.iconcount = sheetwidth * sheetheight
 
-	def tile(self, pos):
+	def tile_coords(self, pos):
 		if not (0 <= pos < self.iconcount):
 			raise ValueError("pos out of bounds: %d" % pos)
 		posy, posx = divmod(pos, self.sheetwidth)
 		posx *= self.iconwidth
 		posy *= self.iconheight
+		return posx, posy
+
+	def tile(self, pos):
+		posx, posy = self.tile_coords(pos)
 		data = []
 		for row in self.image.image[posy:posy + self.iconheight]:
 			data.append(row[posx*4:(posx + self.iconwidth)*4])
@@ -96,33 +102,61 @@ def make_tile(pos, bg):
 			composed_row = []
 			for x in range(0, len(row), 4):
 				a = row[x + 3] / 255.0
-				composed_row.extend([
-					round(bgrow[x + 0] * (1 - a) + row[x + 0] * a),
-					round(bgrow[x + 1] * (1 - a) + row[x + 1] * a),
-					round(bgrow[x + 2] * (1 - a) + row[x + 2] * a),
-					round(bgrow[x + 3] * (1 - a) + row[x + 3]),
-				])
+				bga = bgrow[x + 3] / 255.0
+				newa = a + bga - a * bga
+				if newa <= 0:
+					composed_row.extend([0, 0, 0, 0])
+				else:
+					composed_row.extend([
+						round((bgrow[x + 0] * bga * (1 - a) + row[x + 0] * a) / newa),
+						round((bgrow[x + 1] * bga * (1 - a) + row[x + 1] * a) / newa),
+						round((bgrow[x + 2] * bga * (1 - a) + row[x + 2] * a) / newa),
+						round(newa * 255),
+					])
 			composed_tile.append(composed_row)
 		return composed_tile
 	else:
 		return border_tile
 
+def css_class(name):
+	return name.replace(':', '-').replace('/', '-')
+
 for i, advancement in enumerate(data['advancements']):
 	out_sprites.set_tile(i * 2, make_tile(advancement['icon'], (advancement['level'], False)))
 	out_sprites.set_tile(i * 2 + 1, make_tile(advancement['icon'], (advancement['level'], True)))
-	advancement['icon'] = i * 2
+	if len(advancement['criteria']) > 1 and 'mode' not in advancement:
+		raise ValueError("Need criteria mode for %s" % advancement['id'])
+	del advancement['icon']
 
 for i, category in enumerate(data['categories']):
 	out_sprites.set_tile(i + 2 * len(data['advancements']), make_tile(category['icon'], None))
-	category['icon'] = i + 2 * len(data['advancements'])
+	del category['icon']
 
-write_image(out_sprites.image, "spritesheet.png")
+write_image(out_sprites.image, OUT_PATH+"images/spritesheet.png")
 
-data['spritesheet'] = {
-	"iconwidth": out_sprites.iconwidth,
-	"iconheight": out_sprites.iconwidth,
-	"sheetwidth": out_sprites.sheetwidth,
-	"sheetheight": out_sprites.sheetheight,
-}
-with open("advancement_data.json", "w") as fp:
+del data['spritesheet']
+with open(OUT_PATH+"advancement_data.json", "w") as fp:
 	json.dump(data, fp)
+
+with open(OUT_PATH+"spritesheet.css", "w") as fp:
+	print(".sprite {", file=fp)
+	print("  background: url(images/spritesheet.png) no-repeat;", file=fp)
+	print("  width: %dpx;" % out_sprites.iconwidth, file=fp)
+	print("  height: %dpx;" % out_sprites.iconheight, file=fp)
+	print("  display: inline-block;", file=fp)
+	print("  vertical-align: middle;", file=fp)
+	print("}", file=fp)
+	for i, advancement in enumerate(data['advancements']):
+		posx, posy = out_sprites.tile_coords(i * 2)
+		print(".sprite.%s {" % css_class(advancement['id']), file=fp)
+		print("  background-position: %dpx %dpx;" % (-posx, -posy), file=fp)
+		print("}", file=fp)
+		posx, posy = out_sprites.tile_coords(i * 2 + 1)
+		print(".sprite.%s.done {" % css_class(advancement['id']), file=fp)
+		print("  background-position: %dpx %dpx;" % (-posx, -posy), file=fp)
+		print("}", file=fp)
+	for i, category in enumerate(data['categories']):
+		posx, posy = out_sprites.tile_coords(i + 2 * len(data['advancements']))
+		print(".sprite.cat-%s {" % css_class(category['id']), file=fp)
+		print("  background-position: %dpx %dpx;" % (-posx, -posy), file=fp)
+		print("}", file=fp)
