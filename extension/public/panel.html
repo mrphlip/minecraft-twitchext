@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Viewer Page</title>
+    <link href="jquery-ui.min.css" rel="stylesheet">
+    <link href="spritesheet.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
     <div id="app" class="full-height"></div>
@@ -9,18 +12,27 @@
     <!-- If you use any external libraries, such as jQuery, you must include
       them as part of your extension.  Twitch does not allow extensions to link
       to external libraries. -->
-    <script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="jquery-ui.min.js" type="text/javascript"></script>
     <script src="viewer.js" type="text/javascript"></script>
-    <h2>Hello, World!</h2>
-    <p>Would you care to cycle a color?</p>
-    <div>
-        <input type="button" id="cycle" disabled="disabled" value="Yes, I would" />
-    </div>
-    <div style="float: left; position: relative; left: 50%">
-        <div id="color" style="border-radius: 50px; transition: background-color 0.5s ease; margin-top: 30px; width: 100px; height: 100px; background-color: #6441A4; float: left; position: relative; left: -50%">
+    <div class="loadingpane"><img src="images/loading.gif"></div>
+    <div class="content" style="display: none">
+        <ul>
+            <li><a href="#tab-summary">Summary</a></li>
+            <li><a href="#tab-detail">Detail</a></li>
+        </ul>
+        <div id="tab-summary">
+            <div class="header">
+                <img class="icon">
+                <h1 class="playername"></h1>
+                <div class="worldname"></div>
+            </div>
+            <div class="progress"><div class="progress-label"></div></div>
+            <p>Latest advancement:</p>
+            <p><span class="latestadv-icon"></span> <span class="latestadv-name"></span></p>
         </div>
-    </div>
-    <div id="list">
+        <div id="tab-detail">
+        </div>
     </div>
 </body>
 </html>
