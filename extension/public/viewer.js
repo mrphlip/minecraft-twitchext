@@ -5,7 +5,7 @@ function init() {
     $('.progress').progressbar({
         max: 1,
         value: 0,
-    })
+    });
 
     $.getJSON("advancement_data.json", (adv_data) => {
         advancement_data = adv_data;
@@ -14,9 +14,14 @@ function init() {
         $.getJSON("sample_data.json", (sample_data) => {
             update_page(sample_data);
         })
-    })
+    });
 }
 $(init);
+
+Twitch.ext.onContext(function(context) {
+    Twitch.ext.rig.log('context', context);
+    document.body.className = 'theme-' + context.theme;
+});
 
 function css_class(name) {
     return name.replace(/[:\/]/g, '-');
