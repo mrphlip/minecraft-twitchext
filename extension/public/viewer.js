@@ -19,20 +19,24 @@ function init() {
 
     Twitch.ext.configuration.onChanged(function() {
         Twitch.ext.rig.log('init state loaded');
-        try {
-            init_state = JSON.parse(Twitch.ext.configuration.broadcaster.content);
-        } catch(e) {
-            console.error(e);
-            init_state = {blank: true};
+        if (Twitch.ext.configuration.broadcaster) {
+            init_state = Twitch.ext.configuration.broadcaster.content;
+        } else {
+            init_state = 'none';
         }
-        
+
         if(advancement_data)
             all_loaded();
     });
 
     function all_loaded() {
         build_page();
-        update_page(init_state);
+        update_page(init_state === 'none' ? undefined : init_state);
+
+        Twitch.ext.listen('broadcast', function (target, contentType, data) {
+            Twitch.ext.rig.log('received broadcast data', data);
+            update_page(data);
+        });
     }
 }
 init();
@@ -93,16 +97,20 @@ function build_page() {
 }
 
 function update_page(data) {
-    if (data.blank) {
+    try {
+        if (!data)
+            throw "Data missing";
+        data = JSON.parse(data);
+    } catch(e) {
+        Twitch.ext.rig.log('parse error', e.toString());
         $('.content').hide();
         $('.loadingpane').hide();
         $('.nodata').show();
         return;
-    } else {
-        $('.content').show();
-        $('.loadingpane').hide();
-        $('.nodata').hide();
     }
+    $('.content').show();
+    $('.loadingpane').hide();
+    $('.nodata').hide();
 
     var count = 0, donecount = 0, latestadv, latestdata;
     for (var adv of advancement_data.advancements) {
