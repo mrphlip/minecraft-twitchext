@@ -1,4 +1,4 @@
-html, body, .loadingpane
+html, body, .loadingpane, .nodata
 {
 	width: 100%;
 	height: 100%;
@@ -10,28 +10,30 @@ html, body, .loadingpane
 }
 /* theme colours from
 https://dev.twitch.tv/docs/extensions/designing/#panel-extension-guidelines */
-body.theme-light, body.theme-light .loadingpane,
-body.theme-light .ui-widget-content {
+html.theme-light, html.theme-light body,
+html.theme-light .loadingpane, html.theme-light .nodata,
+html.theme-light .ui-widget-content {
 	background: #fff;
 	color: #232127;
 }
-body.theme-dark, body.theme-dark .loadingpane,
-body.theme-dark .ui-widget-content {
+html.theme-dark, html.theme-dark body,
+html.theme-dark .loadingpane, html.theme-dark .nodata,
+html.theme-dark .ui-widget-content {
 	background: #201c2b;
 	color: #e5e3e8;
 }
-body.theme-light .ui-tabs-nav {
+html.theme-light .ui-tabs-nav {
 	background: #6441A4;
 }
-body.theme-dark .ui-tabs-nav {
+html.theme-dark .ui-tabs-nav {
 	background: #6441A4;
 }
 
-.loadingpane {
+.loadingpane, .nodata {
 	display: block;
 	position: relative;
 }
-.loadingpane img {
+.loadingpane img, .nodata span {
 	display: block;
 	position: absolute;
 	top: 50%;
@@ -95,11 +97,11 @@ body.theme-dark .ui-tabs-nav {
 	font-size: 120%;
 	font-weight: bold;
 }
-body.theme-light .catheader {
+html.theme-light .catheader {
 	background: #6441A4;
 	color: #e5e3e8;
 }
-body.theme-dark .catheader {
+html.theme-dark .catheader {
 	background: #6441A4;
 	color: #e5e3e8;
 }
@@ -135,11 +137,11 @@ body.theme-dark .catheader {
 	font-size: 110%;
 	font-weight: bold;
 }
-body.theme-light .tooltip .tipheader {
+html.theme-light .tooltip .tipheader {
 	background: #6441A4;
 	color: #e5e3e8;
 }
-body.theme-dark .tooltip .tipheader {
+html.theme-dark .tooltip .tipheader {
 	background: #6441A4;
 	color: #e5e3e8;
 }

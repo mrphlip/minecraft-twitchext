@@ -1,33 +1,58 @@
 var advancement_data;
-
 function init() {
-    $('.content').tabs();
-    $('.progress').progressbar({
-        max: 1,
-        value: 0,
+    var init_state;
+    
+    // Need to wait for both:
+    //  * jQuery is fully inited and fetch our master json
+    //  * Twitch is fully inited and passes us the config data
+    // which could happen in either order...
+
+    $(function() {
+        $.getJSON("advancement_data.json", function(adv_data) {
+            Twitch.ext.rig.log('adv_data loaded');
+            advancement_data = adv_data;
+
+            if(init_state)
+                all_loaded();
+        });
     });
 
-    $.getJSON("advancement_data.json", (adv_data) => {
-        advancement_data = adv_data;
+    Twitch.ext.configuration.onChanged(function() {
+        Twitch.ext.rig.log('init state loaded');
+        try {
+            init_state = JSON.parse(Twitch.ext.configuration.broadcaster.content);
+        } catch(e) {
+            console.error(e);
+            init_state = {blank: true};
+        }
+        
+        if(advancement_data)
+            all_loaded();
+    });
+
+    function all_loaded() {
         build_page();
-
-        $.getJSON("sample_data.json", (sample_data) => {
-            update_page(sample_data);
-        })
-    });
+        update_page(init_state);
+    }
 }
-$(init);
+init();
 
 Twitch.ext.onContext(function(context) {
     Twitch.ext.rig.log('context', context);
-    document.body.className = 'theme-' + context.theme;
+    document.documentElement.className = 'theme-' + context.theme;
 });
 
 function css_class(name) {
     return name.replace(/[:\/]/g, '-');
 }
 
-function build_page(data) {
+function build_page() {
+    $('.content').tabs();
+    $('.progress').progressbar({
+        max: 1,
+        value: 0,
+    });
+
     var detailpane = $('#tab-detail').empty();
     var catpane = {}
     for (var cat of advancement_data.categories) {
@@ -68,6 +93,17 @@ function build_page(data) {
 }
 
 function update_page(data) {
+    if (data.blank) {
+        $('.content').hide();
+        $('.loadingpane').hide();
+        $('.nodata').show();
+        return;
+    } else {
+        $('.content').show();
+        $('.loadingpane').hide();
+        $('.nodata').hide();
+    }
+
     var count = 0, donecount = 0, latestadv, latestdata;
     for (var adv of advancement_data.advancements) {
         count++;
@@ -128,9 +164,6 @@ function update_page(data) {
         $('.latestadv-icon').attr('class', 'latestadv-icon');
         $('.latestadv-name').text("None");
     }
-
-    $('.content').show();
-    $('.loadingpane').hide();
 }
 
 function generate_tooltip() {
