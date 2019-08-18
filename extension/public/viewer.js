@@ -34,7 +34,7 @@ function init() {
         update_page(init_state === 'none' ? undefined : init_state);
 
         Twitch.ext.listen('broadcast', function (target, contentType, data) {
-            Twitch.ext.rig.log('received broadcast data', data);
+            Twitch.ext.rig.log('received broadcast data');
             update_page(data);
         });
     }
@@ -51,7 +51,9 @@ function css_class(name) {
 }
 
 function build_page() {
-    $('.content').tabs();
+    $('.content').tabs({
+        activate: tile_unclick,
+    });
     $('.progress').progressbar({
         max: 1,
         value: 0,
@@ -100,6 +102,7 @@ function update_page(data) {
     try {
         if (!data)
             throw "Data missing";
+        data = RawDeflate.inflate(data);
         data = JSON.parse(data);
     } catch(e) {
         Twitch.ext.rig.log('parse error', e.toString());
@@ -122,19 +125,19 @@ function update_page(data) {
         if (advdata.done) {
             donecount++;
             if (adv.mode == 'all') {
-                var lastCrit;
+                var lastCrit = undefined;
                 for (var i in advdata.criteria)
                     if (!lastCrit || advdata.criteria[i] > lastCrit)
                         lastCrit = advdata.criteria[i];
                 advdata.date = lastCrit;
             } else {
-                var firstCrit;
+                var firstCrit = undefined;
                 for (var i in advdata.criteria)
                     if (!firstCrit || advdata.criteria[i] < firstCrit)
                         firstCrit = advdata.criteria[i];
                 advdata.date = firstCrit;
             }
-            if (!latestadv || advdata.date > latestadv.date) {
+            if (!latestadv || advdata.date > latestdata.date) {
                 latestadv = adv;
                 latestdata = advdata;
             }
@@ -215,5 +218,11 @@ function tile_click() {
     } else {
         $(this).tooltip('open', {type: 'dummyevent', target: this});
         clicked = this;
+    }
+}
+function tile_unclick() {
+    if (clicked) {
+        $(clicked).tooltip('close');
+        clicked = undefined;
     }
 }
