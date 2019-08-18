@@ -149,6 +149,7 @@ html.theme-dark .tooltip .tipheader {
 	margin: 0;
 	font-style: italic;
 	font-size: 80%;
+	white-space: pre-line;
 }
 .tooltip .criteria {
 	margin: 0 0 0 1.5em;
