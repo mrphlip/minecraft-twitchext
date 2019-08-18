@@ -199,7 +199,7 @@
 			"criteria": [
 				{
 					"id": "in_stronghold",
-					"description": "In Stronghold"
+					"description": "Entered Stronghold"
 				}
 			]
 		},
@@ -213,7 +213,7 @@
 			"criteria": [
 				{
 					"id": "entered_end",
-					"description": "Entered End"
+					"description": "Entered The End"
 				}
 			]
 		},
@@ -324,7 +324,7 @@
 			"criteria": [
 				{
 					"id": "killed_ghast",
-					"description": "Killed Ghast"
+					"description": "Killed Ghast in Overworld"
 				}
 			]
 		},
@@ -338,7 +338,7 @@
 			"criteria": [
 				{
 					"id": "travelled",
-					"description": "Travelled"
+					"description": "Travelled distance"
 				}
 			]
 		},
@@ -352,7 +352,7 @@
 			"criteria": [
 				{
 					"id": "fortress",
-					"description": "Enter Fortress"
+					"description": "Entered Fortress"
 				}
 			]
 		},
@@ -408,7 +408,7 @@
 			"criteria": [
 				{
 					"id": "beacon",
-					"description": "Beacon"
+					"description": "Full Beacon"
 				}
 			]
 		},
@@ -478,7 +478,7 @@
 			"criteria": [
 				{
 					"id": "entered_end",
-					"description": "Entered End"
+					"description": "Entered The End"
 				}
 			]
 		},
@@ -492,7 +492,7 @@
 			"criteria": [
 				{
 					"id": "killed_dragon",
-					"description": "Killed Dragon"
+					"description": "Killed Ender Dragon"
 				}
 			]
 		},
@@ -534,7 +534,7 @@
 			"criteria": [
 				{
 					"id": "in_city",
-					"description": "In End City"
+					"description": "Entered End City"
 				}
 			]
 		},
@@ -562,7 +562,7 @@
 			"criteria": [
 				{
 					"id": "levitated",
-					"description": "Levitated"
+					"description": "Levitated distance"
 				}
 			]
 		},
@@ -576,7 +576,7 @@
 			"criteria": [
 				{
 					"id": "summoned_dragon",
-					"description": "Summoned Dragon"
+					"description": "Summoned Ender Dragon"
 				}
 			]
 		},
@@ -603,12 +603,12 @@
 			"level": "advancement",
 			"criteria": [
 				{
-					"id": "killed_by_something",
-					"description": "Killed By Something"
-				},
-				{
 					"id": "killed_something",
 					"description": "Killed Something"
+				},
+				{
+					"id": "killed_by_something",
+					"description": "Killed By Something"
 				}
 			],
 			"mode": "any"
@@ -985,7 +985,7 @@
 			"criteria": [
 				{
 					"id": "two_birds",
-					"description": "Kill two Phantoms"
+					"description": "Kill two Phantoms with Crossbow"
 				}
 			]
 		},
@@ -999,7 +999,7 @@
 			"criteria": [
 				{
 					"id": "kill_pillager",
-					"description": "Kill Pillager"
+					"description": "Kill Pillager with Crossbow"
 				}
 			]
 		},
@@ -1013,7 +1013,7 @@
 			"criteria": [
 				{
 					"id": "arbalistic",
-					"description": "Kill five mobs"
+					"description": "Kill five mobs with Crossbow"
 				}
 			]
 		},
