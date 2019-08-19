@@ -64,9 +64,9 @@ function build_page() {
     for (var cat of advancement_data.categories) {
         var header = $('<h2>').appendTo(detailpane);
         catpane[cat.id] = $('<div>').appendTo(detailpane);
-        header.attr('class', 'catheader');
+        header.attr('class', 'catheader labelled');
         $('<span>').attr('class', 'sprite cat-' + css_class(cat.id)).appendTo(header);
-        header.append(' ' + cat.name)
+        $('<span>').attr('class', 'label').text(cat.name).appendTo(header);
     }
     for (var adv of advancement_data.advancements) {
         var tile = $('<div>').appendTo(catpane[adv.category]);
@@ -183,11 +183,11 @@ function generate_tooltip() {
     var adv = tile.data('adv'), advdata = tile.data('advdata');
     panel.attr('class', 'tooltip');
     var header = $('<h3>').appendTo(panel);
-    header.attr('class', 'tipheader');
+    header.attr('class', 'tipheader labelled');
     var icon = $('<span>').attr('class', 'sprite ' + css_class(adv.id)).appendTo(header);
     if (advdata.done)
         icon.addClass('done');
-    header.append(' ' + adv.name);
+    $('<span>').attr('class', 'label').text(adv.name).appendTo(header);
     $('<p>').attr('class', 'description').append(adv.description).appendTo(panel);
     var list = $('<ul>').attr('class', 'criteria').appendTo(panel);
     for (var crit of adv.criteria) {
