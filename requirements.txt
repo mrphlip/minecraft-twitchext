@@ -1,0 +1,6 @@
+Pillow
+pyjwt[crypto]
+watchdog
+appdirs
+pathlib2
+wxPython
