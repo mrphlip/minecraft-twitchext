@@ -13,3 +13,5 @@ elif appdirs.system == 'darwin':
 	DEF_MINECRAFT_DIR = appdirs.user_data_dir('minecraft')
 else:
 	DEF_MINECRAFT_DIR = os.path.expanduser("~/.minecraft")
+
+CLIENT_ID = 'slvinmcxz6qqkut8s3oxckx14ka85w'

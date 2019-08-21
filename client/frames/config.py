@@ -8,9 +8,6 @@ class MinecraftConfig(wx.Dialog):
 
 		self.real_config = config
 		self.config = config.copy()
-		self.config.minecraftbase = config.minecraftbase
-		self.config.world = config.world
-		self.config.userid = config.userid
 
 		self.world_options = []
 		self.user_options = []
@@ -150,3 +147,30 @@ class MinecraftConfig(wx.Dialog):
 
 	def validate(self):
 		self.btn_ok.Enable(self.config.has_minecraft_config())
+
+class TwitchConfig(wx.Dialog):
+	def __init__(self, config, parent=None):
+		super().__init__(parent, title="Twitch Login")
+
+		self.real_config = config
+		self.config = config.copy()
+
+		sizer = wx.BoxSizer(wx.VERTICAL)
+
+		sizer.Add(wx.StaticText(self, label="TODO"), 1, wx.ALIGN_CENTER)
+
+		buttons = self.CreateButtonSizer(wx.OK | wx.CANCEL)
+		if buttons:
+			sizer.Add(buttons, 0, wx.EXPAND | wx.BOTTOM, 10)
+		
+		self.SetSizer(sizer)
+
+		self.SetClientSize(700, self.GetEffectiveMinSize().GetHeight())
+
+		self.btn_ok = wx.Window.FindWindowById(wx.ID_OK, self)
+		self.Bind(wx.EVT_BUTTON, self.on_ok, self.btn_ok)
+
+	def on_ok(self, event):
+		self.real_config.twitchtoken = 'dummy'
+		self.real_config.save()
+		self.EndModal(wx.ID_OK)

@@ -1,7 +1,9 @@
 import wx
 from constants import APP_DESCRIPTION
-from frames.config import MinecraftConfig
+from frames.config import MinecraftConfig, TwitchConfig
 from utils.minecraft import get_minecraft_user, get_minecraft_icon
+from utils.twitch import get_twitch_data
+from utils.worker import send_update
 import io
 
 class MainFrame(wx.Frame):
@@ -45,6 +47,10 @@ class MainFrame(wx.Frame):
 		self.Bind(wx.EVT_BUTTON, self.on_click_twitch_config, btn_twitch_config)
 		sizer.Add(btn_twitch_config, 1, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
 
+		btn_do_post = wx.Button(self, label='do post')
+		self.Bind(wx.EVT_BUTTON, lambda e:send_update(self.config), btn_do_post)
+		sizer.Add(btn_do_post, 1, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
+
 		btn_exit = wx.Button(self, wx.ID_CANCEL, label='Exit')
 		self.Bind(wx.EVT_BUTTON, self.on_click_exit, btn_exit)
 		sizer.Add(btn_exit, 1, wx.EXPAND | wx.ALL, 10)
@@ -55,7 +61,7 @@ class MainFrame(wx.Frame):
 		self.update_config()
 
 	def update_config(self):
-		self.lbl_base_path.SetLabel(self.config.minecraftbase or ' ')
+		self.lbl_base_path.SetLabel(self.config.minecraftbase or '')
 		self.lbl_world.SetLabel(self.config.world or '')
 		if self.config.userid:
 			self.lbl_user.SetLabel(get_minecraft_user(self.config.userid)['name'])
@@ -70,7 +76,7 @@ class MainFrame(wx.Frame):
 		else:
 			self.lbl_user.SetLabel('')
 			self.img_user.SetBitmap(wx.NullBitmap)
-		self.lbl_twitchuser.SetLabel(self.config.twitchtoken or ' ')
+		self.lbl_twitchuser.SetLabel(get_twitch_data(self.config.twitchtoken)['name'])
 		self.SendSizeEvent()
 
 	def on_click_exit(self, event):
@@ -78,8 +84,10 @@ class MainFrame(wx.Frame):
 
 	def on_click_mc_config(self, event):
 		with MinecraftConfig(self.config) as dlg:
-			ret = dlg.ShowModal()
+			dlg.ShowModal()
 		self.update_config()
 
 	def on_click_twitch_config(self, event):
-		pass
+		with TwitchConfig(self.config) as dlg:
+			dlg.ShowModal()
+		self.update_config()

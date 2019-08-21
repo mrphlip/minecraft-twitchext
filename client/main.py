@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import wx
 from frames.main import MainFrame
-from frames.config import MinecraftConfig
+from frames.config import MinecraftConfig, TwitchConfig
 from state import ConfigState
 from constants import APP_DESCRIPTION
 
@@ -16,6 +16,17 @@ class MinecraftClient(wx.App):
 				return False
 			elif not config.has_minecraft_config():
 				with wx.MessageDialog(None, "Error in Minecraft config", APP_DESCRIPTION,
+						style=wx.OK | wx.ICON_ERROR | wx.CENTRE) as dlg:
+					dlg.ShowModal()
+				return False
+
+		if not config.has_twitch_config():
+			with TwitchConfig(config) as dlg:
+				ret = dlg.ShowModal()
+			if ret == wx.ID_CANCEL:
+				return False
+			elif not config.has_twitch_config():
+				with wx.MessageDialog(None, "Error in Twitch config", APP_DESCRIPTION,
 						style=wx.OK | wx.ICON_ERROR | wx.CENTRE) as dlg:
 					dlg.ShowModal()
 				return False
