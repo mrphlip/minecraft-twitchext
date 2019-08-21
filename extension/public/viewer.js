@@ -102,6 +102,7 @@ function update_page(data) {
     try {
         if (!data)
             throw "Data missing";
+        data = atob(data); // un-base64
         data = RawDeflate.inflate(data);
         data = JSON.parse(data);
     } catch(e) {
