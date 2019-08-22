@@ -1,10 +1,14 @@
 import wx
+import wx.lib.newevent
 from constants import APP_DESCRIPTION
 from frames.config import MinecraftConfig, TwitchConfig
 from utils.minecraft import get_minecraft_user, get_minecraft_icon
 from utils.twitch import get_twitch_data
-from utils.worker import send_update
+from utils.worker import set_watched_file, DEBOUNCE_TIME
 import io
+
+SentUpdate, EVT_SENT_UPDATE = wx.lib.newevent.NewEvent()
+FileRemoved, EVT_FILE_REMOVED = wx.lib.newevent.NewEvent()
 
 class MainFrame(wx.Frame):
 	def __init__(self, config):
@@ -47,14 +51,17 @@ class MainFrame(wx.Frame):
 		self.Bind(wx.EVT_BUTTON, self.on_click_twitch_config, btn_twitch_config)
 		sizer.Add(btn_twitch_config, 1, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
 
-		btn_do_post = wx.Button(self, label='do post')
-		self.Bind(wx.EVT_BUTTON, lambda e:send_update(self.config), btn_do_post)
-		sizer.Add(btn_do_post, 1, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
-
 		btn_exit = wx.Button(self, wx.ID_CANCEL, label='Exit')
 		self.Bind(wx.EVT_BUTTON, self.on_click_exit, btn_exit)
 		sizer.Add(btn_exit, 1, wx.EXPAND | wx.ALL, 10)
 		self.SetSizer(sizer)
+
+		self.status_bar = self.CreateStatusBar(1)
+		self.status_bar.SetStatusText('Initialising')
+		self.Bind(EVT_SENT_UPDATE, self.on_sent_update)
+		self.Bind(EVT_FILE_REMOVED, self.on_file_removed)
+		self.tmr_clear = wx.Timer(self)
+		self.Bind(wx.EVT_TIMER, self.on_clear_status, self.tmr_clear)
 
 		self.SetSize(800, sizer.ComputeFittingWindowSize(self).height)
 
@@ -78,6 +85,7 @@ class MainFrame(wx.Frame):
 			self.img_user.SetBitmap(wx.NullBitmap)
 		self.lbl_twitchuser.SetLabel(get_twitch_data(self.config.twitchtoken)['name'])
 		self.SendSizeEvent()
+		set_watched_file(self.config, self)
 
 	def on_click_exit(self, event):
 		self.Close()
@@ -91,3 +99,22 @@ class MainFrame(wx.Frame):
 		with TwitchConfig(self.config) as dlg:
 			dlg.ShowModal()
 		self.update_config()
+
+	def sent_update(self):
+		# This is called from the worker thread, so post update to gui thread
+		self.QueueEvent(SentUpdate())
+
+	def file_removed(self):
+		self.QueueEvent(FileRemoved())
+
+	def on_sent_update(self, event):
+		self.status_bar.SetStatusText('Sent advancement data')
+		self.tmr_clear.Stop()
+		self.tmr_clear.StartOnce(DEBOUNCE_TIME * 1000)
+
+	def on_file_removed(self, event):
+		self.status_bar.SetStatusText('Advancement data missing - has world been deleted?')
+		self.tmr_clear.Stop()
+
+	def on_clear_status(self, event):
+		self.status_bar.SetStatusText('Monitoring')
