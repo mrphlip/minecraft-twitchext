@@ -13,6 +13,7 @@ define("ER_DUP_ENTRY", 1062);
 define("EXPIRY_TIMEOUT", 3600);
 define("OTP_LENGTH", 7);
 define("JWT_EXPIRY", 86400);
+define("TOKEN_LENGTH", 64);
 
 function main() {
 	if (!empty($_REQUEST['login'])) {
@@ -41,8 +42,8 @@ function new_user() {
 	global $conn, $client_id, $redirect_uri;
 	$nonce = $_REQUEST['login'];
 
-	if (strlen($nonce) != 32)
-		die("Nonce length must be 32");
+	if (strlen($nonce) != TOKEN_LENGTH)
+		die("Nonce length must be " . TOKEN_LENGTH);
 	// store this login step in the staging table
 	$qry = $conn->prepare("INSERT INTO oauth_session(nonce, status, created) VALUES(?,?,?)") or mysqlerr($conn, "prepare err");
 	$status = STATUS_INCOMPLETE; // for some reason it has to be a real var??? php why
@@ -221,9 +222,9 @@ function resolve_token() {
 }
 
 function gen_token() {
-	// Returns a 32-character alnum (almost) string
+	// Returns a TOKEN_LENGTH-character alnum (almost) string
 	// using the CSPRNG in PHP7
-	return base64_encode(random_bytes(24));
+	return base64_encode(random_bytes(3 * TOKEN_LENGTH / 4));
 }
 
 function gen_otp() {
