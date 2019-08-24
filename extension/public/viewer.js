@@ -122,7 +122,7 @@ function on_new_state(data) {
     if (latestadv) {
         $('.latestadv-icon').attr('class', 'latestadv-icon sprite done ' + css_class(latestadv.id));
         $('.latestadv-name').text(latestadv.name);
-        $('.latestadv-date').text(new Date(latestdata.date).toLocaleString());
+        $('.latestadv-date').text(new Date(latestdata.date * 1000).toLocaleString());
     } else {
         $('.latestadv-icon').attr('class', 'latestadv-icon');
         $('.latestadv-name').text("None");
@@ -150,7 +150,7 @@ function generate_tooltip() {
     }
     if (advdata.done) {
         var dateline = $('<div>').attr('class', 'dateline').append("Achieved ");
-        $('<span>').attr('class', 'date').text(new Date(advdata.date).toLocaleString()).appendTo(dateline);
+        $('<span>').attr('class', 'date').text(new Date(advdata.date * 1000).toLocaleString()).appendTo(dateline);
         dateline.appendTo(panel);
     }
     return panel;

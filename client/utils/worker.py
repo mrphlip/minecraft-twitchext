@@ -2,6 +2,7 @@ import json
 import base64
 import sys
 import time
+import datetime
 import logging
 import os
 from watchdog.observers import Observer
@@ -12,6 +13,8 @@ from . import twitch
 from . import minecraft
 
 DEBOUNCE_TIME = 15
+
+DT_FMT = '%Y-%m-%d %H:%M:%S %z'
 
 def build_payload(config):
 	# load advancements data
@@ -24,10 +27,19 @@ def build_payload(config):
 		if not k.startswith('minecraft:recipes/')
 	}
 	# sanity-check schema
-	for k, v in data.items():
-		if k != 'DataVersion':
-			v.setdefault('criteria', {})
-			v.setdefault('done', False)
+	ver = data.pop('DataVersion', None)
+	data = {
+		advid: {
+			'criteria': {
+				criteria: datetime.datetime.strptime(date, DT_FMT).timestamp()
+				for criteria, date in adv.get('criteria', {}).items()
+			},
+			'done': adv.get('done', False),
+		}
+		for advid, adv in data.items()
+	}
+	if ver:
+		data['DataVersion'] = ver
 
 	# add world metadata
 	user = minecraft.get_minecraft_user(config.userid)
