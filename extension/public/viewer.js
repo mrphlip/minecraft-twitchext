@@ -172,9 +172,11 @@ function update_page(data) {
     if (latestadv) {
         $('.latestadv-icon').attr('class', 'latestadv-icon sprite done ' + css_class(latestadv.id));
         $('.latestadv-name').text(latestadv.name);
+        $('.latestadv-date').text(new Date(latestdata.date).toLocaleString());
     } else {
         $('.latestadv-icon').attr('class', 'latestadv-icon');
         $('.latestadv-name').text("None");
+        $('.latestadv-date').text("");
     }
 }
 
@@ -195,6 +197,11 @@ function generate_tooltip() {
         var li = $('<li>').text(crit.description).appendTo(list);
         if (advdata.criteria[crit.id])
             li.addClass('done');
+    }
+    if (advdata.done) {
+        var dateline = $('<div>').attr('class', 'dateline').append("Achieved ");
+        $('<span>').attr('class', 'date').text(new Date(advdata.date).toLocaleString()).appendTo(dateline);
+        dateline.appendTo(panel);
     }
     return panel;
 }
