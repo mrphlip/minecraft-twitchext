@@ -7,7 +7,7 @@ html, body, .loadingpane, .nodata
 	border: none;
 	background: white;
 	color: black;
-	font: 100% sans-serif;
+	font: 100% 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 /* theme colours from
 https://dev.twitch.tv/docs/extensions/designing/#panel-extension-guidelines */
