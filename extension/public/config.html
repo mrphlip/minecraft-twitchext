@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Config Page</title>
+    <link href="jquery-ui.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="loadingpane"><img src="images/loading.gif"></div>
+    <div class="unconfigured" style="display: none">
+        <p>No data found.</p>
+        <p>
+            Please see the
+            <a href="https://www.mrphlip.com/mc_twitchext.html" target="_blank">
+                installation instructions
+            </a> for details on how to connect your Minecraft installation to
+            this extension.
+        </p>
+    </div>
+    <div class="configured" style="display: none">
+        <p>Data found for <span class="playername"></span>/<span class="worldname"></span></p>
+        <p>
+            If you still need them, the
+            <a href="https://www.mrphlip.com/mc_twitchext.html" target="_blank">
+                installation instructions
+            </a> are still available.
+        </p>
+    </div>
+
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script src="jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="jquery-ui.min.js" type="text/javascript"></script>
+    <script src="rawinflate.min.js" type="text/javascript"></script>
+    <script src="common.js" type="text/javascript"></script>
+    <script src="config.js" type="text/javascript"></script>
+</body>
+</html>

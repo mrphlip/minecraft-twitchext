@@ -7,6 +7,7 @@ html, body, .loadingpane, .nodata
 	border: none;
 	background: white;
 	color: black;
+	font: 100% sans-serif;
 }
 /* theme colours from
 https://dev.twitch.tv/docs/extensions/designing/#panel-extension-guidelines */
@@ -27,6 +28,20 @@ html.theme-light .ui-tabs-nav {
 }
 html.theme-dark .ui-tabs-nav {
 	background: #6441A4;
+}
+:link, :visited {
+	color: #F00;
+	text-decoration: none;
+}
+html.theme-light :link, html.theme-light :visited {
+	color: #6441A4;
+}
+html.theme-dark :link, html.theme-dark :visited {
+	color: #e2dbf0;
+}
+
+.configured, .unconfigured {
+	text-align: center;
 }
 
 .loadingpane, .nodata {

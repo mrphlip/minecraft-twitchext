@@ -1,50 +1,6 @@
-var advancement_data;
-function init() {
-    var init_state;
-    
-    // Need to wait for both:
-    //  * jQuery is fully inited and fetch our master json
-    //  * Twitch is fully inited and passes us the config data
-    // which could happen in either order...
-
-    $(function() {
-        $.getJSON("advancement_data.json", function(adv_data) {
-            Twitch.ext.rig.log('adv_data loaded');
-            advancement_data = adv_data;
-
-            if(init_state)
-                all_loaded();
-        });
-    });
-
-    Twitch.ext.configuration.onChanged(function() {
-        Twitch.ext.rig.log('init state loaded');
-        if (Twitch.ext.configuration.broadcaster) {
-            init_state = Twitch.ext.configuration.broadcaster.content;
-        } else {
-            init_state = 'none';
-        }
-
-        if(advancement_data)
-            all_loaded();
-    });
-
-    function all_loaded() {
-        build_page();
-        update_page(init_state === 'none' ? undefined : init_state);
-
-        Twitch.ext.listen('broadcast', function (target, contentType, data) {
-            Twitch.ext.rig.log('received broadcast data');
-            update_page(data);
-        });
-    }
+function on_loaded() {
+    build_page();
 }
-init();
-
-Twitch.ext.onContext(function(context) {
-    Twitch.ext.rig.log('context', context);
-    document.documentElement.className = 'theme-' + context.theme;
-});
 
 function css_class(name) {
     return name.replace(/[:\/]/g, '-');
@@ -98,23 +54,17 @@ function build_page() {
     }
 }
 
-function update_page(data) {
-    try {
-        if (!data)
-            throw "Data missing";
-        data = atob(data); // un-base64
-        data = RawDeflate.inflate(data);
-        data = JSON.parse(data);
-    } catch(e) {
-        Twitch.ext.rig.log('parse error', e.toString());
+function on_new_state(data) {
+    if (data) {
+        $('.content').show();
+        $('.loadingpane').hide();
+        $('.nodata').hide();
+    } else {
         $('.content').hide();
         $('.loadingpane').hide();
         $('.nodata').show();
         return;
     }
-    $('.content').show();
-    $('.loadingpane').hide();
-    $('.nodata').hide();
 
     var count = 0, donecount = 0, latestadv, latestdata;
     for (var adv of advancement_data.advancements) {
