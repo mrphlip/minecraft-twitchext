@@ -1,6 +1,15 @@
 import wx
 import os
+import webbrowser
+import secrets
+import urllib.request
+import urllib.parse
+import json
 from utils.minecraft import get_minecraft_user
+from utils.twitch import get_twitch_data
+from constants import LOGIN_URL
+
+TOKEN_LENGTH = 64
 
 class MinecraftConfig(wx.Dialog):
 	def __init__(self, config, parent=None):
@@ -29,14 +38,14 @@ class MinecraftConfig(wx.Dialog):
 		
 		details.Add(wx.StaticText(self, label='World:'), 1,
 			wx.ALIGN_RIGHT | wx.ALIGN_CENTER_VERTICAL)
-		self.chs_world = wx.Choice(self, style=wx.ST_ELLIPSIZE_MIDDLE)
+		self.chs_world = wx.Choice(self)
 		self.Bind(wx.EVT_CHOICE, self.on_choose_world, self.chs_world)
 		details.Add(self.chs_world, 1,
 			wx.EXPAND)
 		
 		details.Add(wx.StaticText(self, label='Player:'), 1,
 			wx.ALIGN_RIGHT | wx.ALIGN_CENTER_VERTICAL)
-		self.chs_user = wx.Choice(self, style=wx.ST_ELLIPSIZE_MIDDLE)
+		self.chs_user = wx.Choice(self)
 		self.Bind(wx.EVT_CHOICE, self.on_choose_user, self.chs_user)
 		details.Add(self.chs_user, 1,
 			wx.EXPAND)
@@ -157,7 +166,18 @@ class TwitchConfig(wx.Dialog):
 
 		sizer = wx.BoxSizer(wx.VERTICAL)
 
-		sizer.Add(wx.StaticText(self, label="TODO"), 1, wx.ALIGN_CENTER)
+		details = wx.GridSizer(2, 3, 5)
+		details.Add(wx.StaticText(self, label='Channel:'), 1,
+			wx.ALIGN_RIGHT | wx.ALIGN_CENTER_VERTICAL)
+		self.lbl_user = wx.StaticText(self, label=get_twitch_data(config.twitchtoken)['name'])
+		details.Add(self.lbl_user, 1,
+			wx.ALIGN_LEFT | wx.ALIGN_CENTER_VERTICAL)
+		
+		sizer.Add(details, 1, wx.EXPAND | wx.ALL, 5)
+
+		btn_login = wx.Button(self, label="Log In on Twitch")
+		self.Bind(wx.EVT_BUTTON, self.on_login, btn_login)
+		sizer.Add(btn_login, 0, wx.EXPAND | wx.ALL, 10)
 
 		buttons = self.CreateButtonSizer(wx.OK | wx.CANCEL)
 		if buttons:
@@ -170,7 +190,40 @@ class TwitchConfig(wx.Dialog):
 		self.btn_ok = wx.Window.FindWindowById(wx.ID_OK, self)
 		self.Bind(wx.EVT_BUTTON, self.on_ok, self.btn_ok)
 
+		self.validate()
+
 	def on_ok(self, event):
-		self.real_config.twitchtoken = 'dummy'
+		self.real_config.twitchtoken = self.config.twitchtoken
 		self.real_config.save()
 		self.EndModal(wx.ID_OK)
+
+	def on_login(self, event):
+		nonce = secrets.token_urlsafe(TOKEN_LENGTH * 3 // 4)
+		url = LOGIN_URL + '?' + urllib.parse.urlencode({'login': nonce})
+		webbrowser.open(url, new=2)
+
+		with wx.TextEntryDialog(self, "Enter code from login page in web browser",
+			"Enter login code") as dlg:
+			ret = dlg.ShowModal()
+			if ret == wx.ID_CANCEL:
+				return
+			otp = dlg.GetValue().strip()
+
+		url = LOGIN_URL + '?' + urllib.parse.urlencode({'code': nonce, 'otp': otp})
+		with urllib.request.urlopen(url) as fp:
+			data = json.load(fp)
+
+		if 'error' in data:
+			with wx.MessageDialog(None, data['error'], APP_DESCRIPTION,
+					style=wx.OK | wx.ICON_ERROR | wx.CENTRE) as dlg:
+				dlg.ShowModal()
+			return
+
+		self.config.twitchtoken = data['token']
+
+		self.lbl_user.SetLabel(get_twitch_data(self.config.twitchtoken)['name'])
+
+		self.validate()
+
+	def validate(self):
+		self.btn_ok.Enable(self.config.has_twitch_config())

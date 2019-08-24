@@ -3,7 +3,8 @@ import base64
 import zlib
 import json
 import urllib.request
-from constants import CLIENT_ID
+import urllib.parse
+from constants import CLIENT_ID, LOGIN_URL
 
 TWITCH_API_BASE = 'https://api.twitch.tv/'
 TWITCH_SET_CONFIG = TWITCH_API_BASE + 'extensions/%s/configurations/'
@@ -17,9 +18,6 @@ EXPIRY_BUFFER = 3600
 def get_twitch_data(token):
 	global LAST_TOKEN, LAST_DATA
 
-	if not token:
-		return {'name': 'Not logged in', 'userid': 0, 'expiry': 0, 'jwt': None}
-
 	if token == LAST_TOKEN and LAST_DATA and LAST_DATA['expiry'] - EXPIRY_BUFFER >= time.time():
 		return LAST_DATA
 
@@ -28,29 +26,30 @@ def get_twitch_data(token):
 	return LAST_DATA
 
 def _real_get_twitch_data(token):
-	# Just a hard-coded stub until I build the login flow
-	import jwt
-	with open("secret.txt") as fp:
-		secret = fp.read()
-	secret = base64.decodestring(secret.encode("ascii"))
-	userid = 25875159
-	name = 'MrPhlip'
-	expiry = int(time.time() + 86400)
+	if not token:
+		return {
+			'name': 'Not logged in',
+			'userid': 0,
+			'expiry': 0,
+			'jwt': None,
+		}
 
-	payload = {
-		'channel_id': "%d" % userid,
-		'exp': expiry,
-		'pubsub_perms': {'send': ['broadcast']},
-		'role': 'external',
-		'user_id': "%d" % userid,
-		'opaque_user_id': "U%d" % userid,
-	}
-	return {
-		'name': name,
-		'userid': userid,
-		'expiry': expiry,
-		'jwt': jwt.encode(payload, secret).decode('ascii'),
-	}
+	url = LOGIN_URL + '?' + urllib.parse.urlencode({'token': token})
+	with urllib.request.urlopen(url) as fp:
+		try:
+			data = json.load(fp)
+		except json.JSONDecodeError as e:
+			data = {'error': 'Not logged in'}
+
+	if 'error' in data:
+		return {
+			'name': data['error'],
+			'userid': 0,
+			'expiry': 0,
+			'jwt': None,
+		}
+	else:
+		return data
 
 def compress_payload(payload):
 	payload = json.dumps(payload, separators=(',', ':'), ensure_ascii=True)
@@ -63,10 +62,10 @@ def compress_payload(payload):
 	return base64.b64encode(deflated).decode("ascii")
 
 def send_payload(token, payload):
-	if not token:
-		raise ValueError("Not logged in")
-	payload = compress_payload(payload)
 	twitchdata = get_twitch_data(token)
+	if not twitchdata['jwt']:
+		raise ValueError(twitchdata['name'])
+	payload = compress_payload(payload)
 
 	with urllib.request.urlopen(urllib.request.Request(
 			TWITCH_SET_CONFIG % CLIENT_ID,

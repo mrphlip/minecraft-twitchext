@@ -1,6 +1,7 @@
 import json
 import os
 from constants import APP_DIRS, DEF_MINECRAFT_DIR
+from utils.twitch import get_twitch_data
 
 CONFIG_FILE = 'config.json'
 
@@ -57,4 +58,6 @@ class ConfigState:
 			return os.path.isfile(path)
 
 	def has_twitch_config(self):
-		return bool(self.twitchtoken)
+		if not self.twitchtoken:
+			return False
+		return get_twitch_data(self.twitchtoken)['jwt'] is not None

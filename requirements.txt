@@ -1,5 +1,4 @@
 Pillow
-pyjwt[crypto]
 watchdog
 appdirs
 pathlib2

@@ -15,3 +15,5 @@ else:
 	DEF_MINECRAFT_DIR = os.path.expanduser("~/.minecraft")
 
 CLIENT_ID = 'slvinmcxz6qqkut8s3oxckx14ka85w'
+
+LOGIN_URL = 'https://www.mrphlip.com/twitchext.php'
