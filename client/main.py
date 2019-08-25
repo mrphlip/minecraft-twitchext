@@ -6,6 +6,9 @@ from state import ConfigState
 from constants import APP_DESCRIPTION, ICON
 
 class MinecraftClient(wx.App):
+	def __init__(self):
+		super().__init__(useBestVisual=True, clearSigInt=True)
+
 	def OnInit(self):
 		config = ConfigState.load()
 
