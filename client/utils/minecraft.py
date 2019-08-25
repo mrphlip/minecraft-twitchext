@@ -46,8 +46,15 @@ def cached(func, expiry, template, format):
 	return wrapper
 
 def _real_get_minecraft_user(uid):
-	with urllib.request.urlopen(PROFILE_URL % uid) as fp:
-		data = json.load(fp)
+	try:
+		with urllib.request.urlopen(PROFILE_URL % uid) as fp:
+			data = json.load(fp)
+	except json.JSONDecodeError:
+		return {
+			'id': uid,
+			'name': uid,
+			'skinurl': None,
+		}
 	# {"id":"b23de5f514c245e884dbcb644f465af0","name":"mrphlip","properties":[{"name":"textures","value":"eyJ0aW1lc3RhbXAiOjE1NjYxMzIxMjYwMTIsInByb2ZpbGVJZCI6ImIyM2RlNWY1MTRjMjQ1ZTg4NGRiY2I2NDRmNDY1YWYwIiwicHJvZmlsZU5hbWUiOiJtcnBobGlwIiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzZkZDhjNDY2Zjk0YzU1ZjM1YjE3ZjEzNTQ2Zjk1MDg4OGE1YmQ5ODFmN2I0MzBiODg1NzY1NDBiNWI4ZWQxN2UifX19"}]}
 	properties = {i.get('name'): i.get('value') for i in data.get('properties', [])}
 	textures = properties.get('textures')
