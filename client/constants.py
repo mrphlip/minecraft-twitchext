@@ -20,15 +20,16 @@ CLIENT_ID = 'slvinmcxz6qqkut8s3oxckx14ka85w'
 
 LOGIN_URL = 'https://www.mrphlip.com/twitchext.php'
 
-if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):
-	ICON_FN = os.path.join(sys._MEIPASS, 'icon.ico')
-else:
-	ICON_FN = '../assets/icon.ico'
-
 _icon = None
 def ICON():
 	global _icon
 	if _icon is None:
-		with open(ICON_FN, 'rb') as fp:
+		if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):
+			fn = os.path.join(sys._MEIPASS, 'icon.ico')
+		elif os.path.isfile("../assets/icon.ico") and not os.path.isfile("icon.ico"):
+			fn = "../assets/icon.ico"
+		else:
+			fn = "icon.ico"
+		with open(fn, 'rb') as fp:
 			_icon = wx.IconBundle(fp)
 	return _icon
