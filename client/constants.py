@@ -1,5 +1,7 @@
 import os
 import appdirs
+import sys
+import wx
 
 APP_NAME = 'TwitchMinecraftAdvancements'
 APP_DESCRIPTION = 'Twitch Minecraft Advancements'
@@ -17,3 +19,16 @@ else:
 CLIENT_ID = 'slvinmcxz6qqkut8s3oxckx14ka85w'
 
 LOGIN_URL = 'https://www.mrphlip.com/twitchext.php'
+
+if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):
+	ICON_FN = os.path.join(sys._MEIPASS, 'icon.ico')
+else:
+	ICON_FN = '../assets/icon.ico'
+
+_icon = None
+def ICON():
+	global _icon
+	if _icon is None:
+		with open(ICON_FN, 'rb') as fp:
+			_icon = wx.IconBundle(fp)
+	return _icon

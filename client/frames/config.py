@@ -7,13 +7,14 @@ import urllib.parse
 import json
 from utils.minecraft import get_minecraft_user
 from utils.twitch import get_twitch_data
-from constants import LOGIN_URL
+from constants import LOGIN_URL, ICON
 
 TOKEN_LENGTH = 64
 
 class MinecraftConfig(wx.Dialog):
 	def __init__(self, config, parent=None):
 		super().__init__(parent, title="Minecraft World Selection")
+		self.SetIcons(ICON())
 
 		self.real_config = config
 		self.config = config.copy()
@@ -76,6 +77,7 @@ class MinecraftConfig(wx.Dialog):
 	def on_browse(self, event):
 		with wx.DirDialog(self, defaultPath=self.lbl_base_path.GetLabel(),
 				style=wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST) as dlg:
+			dlg.SetIcons(ICON())
 			if dlg.ShowModal() == wx.ID_OK:
 				self.config.minecraftbase = dlg.GetPath()
 				self.lbl_base_path.SetLabel(self.config.minecraftbase)
@@ -160,6 +162,7 @@ class MinecraftConfig(wx.Dialog):
 class TwitchConfig(wx.Dialog):
 	def __init__(self, config, parent=None):
 		super().__init__(parent, title="Twitch Login")
+		self.SetIcons(ICON())
 
 		self.real_config = config
 		self.config = config.copy()
@@ -203,7 +206,8 @@ class TwitchConfig(wx.Dialog):
 		webbrowser.open(url, new=2)
 
 		with wx.TextEntryDialog(self, "Enter code from login page in web browser",
-			"Enter login code") as dlg:
+				"Enter login code") as dlg:
+			dlg.SetIcons(ICON())
 			ret = dlg.ShowModal()
 			if ret == wx.ID_CANCEL:
 				return
@@ -216,6 +220,7 @@ class TwitchConfig(wx.Dialog):
 		if 'error' in data:
 			with wx.MessageDialog(None, data['error'], APP_DESCRIPTION,
 					style=wx.OK | wx.ICON_ERROR | wx.CENTRE) as dlg:
+				dlg.SetIcons(ICON())
 				dlg.ShowModal()
 			return
 

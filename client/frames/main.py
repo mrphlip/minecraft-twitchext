@@ -1,6 +1,6 @@
 import wx
 import wx.lib.newevent
-from constants import APP_DESCRIPTION
+from constants import APP_DESCRIPTION, ICON
 from frames.config import MinecraftConfig, TwitchConfig
 from utils.minecraft import get_minecraft_user, get_minecraft_icon
 from utils.twitch import get_twitch_data
@@ -15,6 +15,7 @@ class MainFrame(wx.Frame):
 		super().__init__(None, title=APP_DESCRIPTION,
 			style=wx.DEFAULT_FRAME_STYLE & ~(wx.MAXIMIZE_BOX | wx.RESIZE_BORDER)
 			)
+		self.SetIcons(ICON())
 
 		self.config = config
 

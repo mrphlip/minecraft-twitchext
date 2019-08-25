@@ -3,7 +3,7 @@ import wx
 from frames.main import MainFrame
 from frames.config import MinecraftConfig, TwitchConfig
 from state import ConfigState
-from constants import APP_DESCRIPTION
+from constants import APP_DESCRIPTION, ICON
 
 class MinecraftClient(wx.App):
 	def OnInit(self):
@@ -17,6 +17,7 @@ class MinecraftClient(wx.App):
 			elif not config.has_minecraft_config():
 				with wx.MessageDialog(None, "Error in Minecraft config", APP_DESCRIPTION,
 						style=wx.OK | wx.ICON_ERROR | wx.CENTRE) as dlg:
+					dlg.SetIcons(ICON())
 					dlg.ShowModal()
 				return False
 
@@ -28,6 +29,7 @@ class MinecraftClient(wx.App):
 			elif not config.has_twitch_config():
 				with wx.MessageDialog(None, "Error in Twitch config", APP_DESCRIPTION,
 						style=wx.OK | wx.ICON_ERROR | wx.CENTRE) as dlg:
+					dlg.SetIcons(ICON())
 					dlg.ShowModal()
 				return False
 
