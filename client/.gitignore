@@ -1,2 +1,4 @@
 __pycache__
-secret.txt
+/build/
+/dist/
+/mc_twitchext.spec
