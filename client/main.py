@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import wx
 from frames.main import MainFrame
 from frames.config import MinecraftConfig, TwitchConfig
