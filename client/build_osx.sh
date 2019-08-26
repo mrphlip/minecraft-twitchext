@@ -9,3 +9,4 @@ mkdir build/dmg
 cp -a dist/mc_twitchext.app build/dmg
 hdiutil create build/uncompressed.dmg -ov -volname mc_twitchext -fs HFS+ -srcfolder build/dmg
 hdiutil convert build/uncompressed.dmg -format UDZO -o dist/mc_twitchext.dmg
+cp dist/mc_twitchext.dmg ../www/mc_twitchext.dmg
