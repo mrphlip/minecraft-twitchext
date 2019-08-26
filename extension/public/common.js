@@ -25,7 +25,7 @@ function init() {
     Twitch.ext.configuration.onChanged(function() {
         Twitch.ext.rig.log('init state loaded');
         if (Twitch.ext.configuration.broadcaster) {
-            init_state = Twitch.ext.configuration.broadcaster.content;
+            init_state = Twitch.ext.configuration.broadcaster.content || 'none';
         } else {
             init_state = 'none';
         }
@@ -35,6 +35,7 @@ function init() {
     });
 
     function all_loaded() {
+        Twitch.ext.rig.log('all loaded');
         on_loaded();
         on_new_state(parse_data(init_state === 'none' ? undefined : init_state));
 
