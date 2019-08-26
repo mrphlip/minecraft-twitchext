@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Minecraft Advancement Monitor Installation Instructions</title>
+<link href="style.css" rel="stylesheet">
+<script src="selector.js"></script>
+</head>
+<body class="win bin noscript">
+
+<h1>Minecraft Advancement Monitor</h1>
+<div class="selectors yesscript">Show instructions for:
+	<select id="os"><option value="win" selected>Windows</option><option value="lin">Linux</option><option value="osx">macOS X</option></select>
+	<select id="build"><option value="bin" selected>Built package (recommended)</option><option value="src">From source</option><option value="venv">From source with virtualenv</option></select>
+</div>
+<p class="osx">Note: I don't personally use OS X, so I'm not particularly familiar with it. These instructions are as good as I can get them, but it's possible you may need to do some additional tweaking to get them to work.</p>
+
+<ul>
+	<li><a href="#about">About Minecraft Advancement Monitor</a></li>
+	<li><a href="#install_twitch">Installing Twitch Extension</a></li>
+	<li><a href="#install_client">Installing the monitor utility</a></li>
+	<li><a href="#use_client">Using the monitor utility</a></li>
+	<li><a href="#activate_twitch">Activating the Twitch Extension</a></li>
+</ul>
+
+<h2 id="about">About Minecraft Advancement Monitor</h2>
+<p>Minecraft Advancement Monitor is a Twitch extension, which allows viewers of your stream to see a live-updating readout of what in-game advancements you have unlocked.</p>
+<div class="gallery">
+	<div class="screenshot"><img src="images/ext_all.png" style="width: 756px; height: 417px" alt=""><label>The Twitch extension, as it appears below a stream</label></div>
+</div>
+<p>A small utility runs on your computer, monitoring the Minecraft world, to see when new advancements have been unlocked, and updates the panel automatically, so viewers immediately see the latest information available.</p>
+<p>Ideal for Minecraft streamers doing challenge runs, such as <a href="https://hcmc100.com/">HCMC100</a>, who want their viewers to know how the challenge is progressing.</p>
+
+<h2 id="install_twitch">Installing Twitch Extension</h2>
+<p>To add the Twitch extension to your channel, go to <a href="https://www.twitch.tv/ext/slvinmcxz6qqkut8s3oxckx14ka85w-0.0.1">the extension's page on Twitch</a> and click the Install button in the top right.</p>
+<div class="gallery"><div class="screenshot"><img src="images/install_start.png" alt="The Twitch extension install page, with the Install button highlighted"></div></div>
+<p>Once the extension is installed, click the Configure button on the confirmation popup.</p>
+<div class="gallery"><div class="screenshot"><img src="images/install_confirm.png" alt="The Twitch install complete confirmation popup"></div></div>
+<p>This will take you to the configuration screen, which will show that no Minecraft data has been found, and a link which directs you to these instructions.</p>
+<div class="gallery"><div class="screenshot"><img src="images/install_config.png" alt="The Twitch configuration panel showing no data found"></div></div>
+
+<h2 id="install_client">Installing the monitor utility</h2>
+<div class="bin">
+<p>The monitor utility can be downloaded from:</p>
+<p class="link win"><a href="mc_twitchext.zip">https://www.mrphlip.com/mc_twitchext/mc_twitchext.zip</a></p>
+<p class="link lin"><a href="mc_twitchext.tar.bz2">https://www.mrphlip.com/mc_twitchext/mc_twitchext.tar.bz2</a></p>
+<p class="link osx"><a href="mc_twitchext.dmg">https://www.mrphlip.com/mc_twitchext/mc_twitchext.dmg</a></p>
+<p>Download and open that file, and run the program inside.</p>
+</div>
+<div class="src venv">
+<p>The code for the monitor utility can be downloaded from:</p>
+<p class="link"><a href="mc_twitchext_src.zip">https://www.mrphlip.com/mc_twitchext/mc_twitchext_src.zip</a></p>
+<!-- <p>Or, it can also be found on <a href="https://github.com/mrphlip/mc_twitchext">GitHub</a>.</p> -->
+<p>Once you have the source, you will need to get Python 3, and install the dependent libraries.</p>
+<p class="win">Python 3 can be downloaded from:</p>
+<p class="link win"><a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p>
+<p class="win">Download and install the Latest Python 3 release. While running the installer, be sure to choose the option to add Python to your system PATH.</p>
+<p class="win">Open up the Command Prompt, and go to wherever you downloaded the source to, and run:</p>
+<pre class="win src">&gt; python -m pip install -r requirements.txt</pre>
+<pre class="win venv">&gt; python -m pip install virtualenv
+&gt; python -m virtualenv venv
+&gt; venv\Scripts\activate
+&gt; python -m pip install -r requirements.txt</pre>
+<p class="win">You can then start the client by running:</p>
+<pre class="win src">&gt; python main.py</pre>
+<pre class="win venv">&gt; venv\Scripts\activate
+&gt; python main.py</pre>
+
+<p class="lin">Python 3 can be found from most Linux distribution's package managers, consult your distribution for more details. For Ubuntu, the command to run is:</p>
+<pre class="lin">$ sudo apt install python3 python3-pip <span class="venv">python3-virtualenv </span>gtk+-3.0</pre>
+
+<p class="osx">Python 3 can be found in <a href="https://brew.sh/">Homebrew</a>. If you don't already have Homebrew installed, install it first, by opening the Terminal app, and entering:</p>
+<pre class="osx">$ curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby</pre>
+<p class="osx">Then, install Python 3 with:</p>
+<pre class="osx">$ brew install python3</pre>
+
+<p class="lin osx">Once this is installed, go to wherever you downloaded the source to, and run:</p>
+<pre class="lin src">$ sudo -H python3 -m pip install -r requirements.txt</pre>
+<pre class="osx src">$ python3 -m pip install -r requirements.txt</pre>
+<pre class="lin osx venv"><span class="osx">$ python3 -m pip install virtualenv
+</span>$ python3 -m virtualenv venv
+$ . venv/bin/activate
+$ pip install -r requirements.txt</pre>
+<p class="lin osx">You can then start the client by running:</p>
+<pre class="lin osx src">$ ./main.py</pre>
+<pre class="lin osx venv">$ . venv/bin/activate
+$ ./main.py</pre>
+<p class="osx venv">Note that the macOS X version of VirtualEnv doesn't play particularly nicely with wxWidgets, so if you get any errors here, consult this page for more information:</p>
+<p class="osx venv link"><a href="https://wiki.wxpython.org/wxPythonVirtualenvOnMac">https://wiki.wxpython.org/wxPythonVirtualenvOnMac</a></p>
+</div>
+
+<h2 id="use_client">Using the monitor utility</h2>
+<p>The first time you run the monitor utility, it will ask you to go through some configuration to set up which Minecraft world to watch, and to link it to your Twitch account.</p>
+<p>The first dialog to open is to set up which Minecraft world to watch.</p>
+<div class="gallery"><div class="screenshot">
+	<img src="images/mcworld_win.png" alt="The Minecraft world selection dialog" class="win">
+	<img src="images/mcworld_lin.png" alt="The Minecraft world selection dialog" class="lin">
+	<img src="images/mcworld_osx.png" alt="The Minecraft world selection dialog" class="osx">
+</div></div>
+<p>The "Base Path" is the <span class="win osx">folder</span><span class="lin">directory</span> where Minecraft's data is being stored. If you're using the standard Minecraft launcher and haven't tinkered with anything, this should already be pointing to the correct location. But if you have customised the location, or are using a different launcher, you can change this to point to the appropriate data location.</p>
+<p>Then, you should be able to pick a World from the list available, and then select a Player (normally there will only be one player to choose &ndash; you &ndash; but if you've opened the world to LAN play then possibly there are others).</p>
+<p>After you click OK, then the next dialog is to link to your Twitch channel, so it can send the advancement data to the extension.</p>
+<div class="gallery"><div class="screenshot">
+	<img src="images/twitchlogin_win.png" alt="The Twitch login dialog" class="win">
+	<img src="images/twitchlogin_lin.png" alt="The Twitch login dialog" class="lin">
+	<img src="images/twitchlogin_osx.png" alt="The Twitch login dialog" class="osx">
+</div></div>
+<p>Click on the "Log In on Twitch" button, and it will open your web browser and direct you to the Twitch login page.</p>
+<div class="gallery"><div class="screenshot"><img src="images/twitch_login.png" alt="The Twitch login page"></div></div>
+<p>Enter your Twitch login details if necessary, and then you will be asked to authorise the Minecraft Advancement Progress utility to view your public account information:</p>
+<div class="gallery"><div class="screenshot"><img src="images/twitch_authorise.png" alt="The Twitch application authorisation page"></div></div>
+<p>Click on Authorize, and you will be presented with a code:</p>
+<div class="gallery"><div class="screenshot"><img src="images/twitch_otp.png" alt="A sample code number"></div></div>
+<p>Return to the monitor utility, and there will be a dialog asking you for this code:</p>
+<div class="gallery"><div class="screenshot">
+	<img src="images/logincode_win.png" alt="The login code dialog" class="win">
+	<img src="images/logincode_lin.png" alt="The login code dialog" class="lin">
+	<img src="images/logincode_osx.png" alt="The login code dialog" class="osx">
+</div></div>
+<p>Enter the code and click OK, and it should show your Twitch channel name on the login setup screen.</p>
+<p>Click OK and it will bring up the main Monitor window.</p>
+<div class="gallery"><div class="screenshot">
+	<img src="images/mainscreen_win.png" alt="The main monitor window" class="win">
+	<img src="images/mainscreen_lin.png" alt="The main monitor window" class="lin">
+	<img src="images/mainscreen_osx.png" alt="The main monitor window" class="osx">
+</div></div>
+<p>While this window is open, it is monitoring the advancments data for the selected world, and uploading it to the Twitch extension whenever it changes. You can click the two buttons to change the settings, for example if you make a new world in Minecraft, you can click "Change Minecraft World" and choose the new world.</p>
+<p>Note 1: Minecraft doesn't save the advancement data immediately as soon as you unlock a new advancement, but only does so periodically as it saves the world. As a result, when you unlock an advancement it won't show up in the extension immediately. If you want to force an update, pressing Escape to pause the game, or pressing L to open the advancements page, I find causes it to save immediately, so the monitor can pick it up. Or, alternately, you can just wait, and it will update on its own eventually.</p>
+<p>Note 2: The monitor utility will need to be running whenever you're streaming Minecraft, in order to send new updates. While you're offline, you can close the utility, and the panel will show the latest information available from when it was last running, so viewers can check your page and see your progress, even between streams.</p>
+
+<h2 id="activate_twitch">Activating the Twitch extension</h2>
+<p>Once you have the monitor utility running, if you return to the Twitch configuration page, it will now show that there is data available:</p>
+<div class="gallery"><div class="screenshot"><img src="images/install_config_done.png" alt="The Twitch configuration panel showing data is found"></div></div>
+<p>Click the cross in the top right to close the configuration popup, and then click Activate on the extension.</p>
+<div class="gallery"><div class="screenshot"><img src="images/twitch_activate.png" alt="The Twitch extension controller"></div></div>
+<p>Choose to either set the extension on an existing panel, or add a new panel. You can have three different extensions on panels on your channel at any one time.</p>
+
+</body>
+</html>

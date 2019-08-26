@@ -1,5 +1,5 @@
 <?php
-require('twitchext-secrets.php');
+require('login-secrets.php');
 
 $conn = new mysqli($mysql_host, $mysql_user, $mysql_pass, $mysql_db);
 if ($conn->connect_error) mysqlerr($conn, "connect err");

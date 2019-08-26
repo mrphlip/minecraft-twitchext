@@ -18,7 +18,7 @@ else:
 
 CLIENT_ID = 'slvinmcxz6qqkut8s3oxckx14ka85w'
 
-LOGIN_URL = 'https://www.mrphlip.com/twitchext.php'
+LOGIN_URL = 'https://www.mrphlip.com/mc_twitchext/login.php'
 
 _icon = None
 def ICON():

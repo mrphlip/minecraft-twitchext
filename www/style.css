@@ -1,0 +1,77 @@
+body {
+	font: 100% sans-serif;
+}
+h1, h2, h3 {
+	font-weight: bold;
+	margin: 0 0 0.25em;
+}
+h1 {
+	font-size: 150%;
+}
+h2 {
+	font-size: 120%;
+	border-top: 1px solid gray;
+	margin-top: 0.25em;
+	padding-top: 0.25em;
+}
+h3 {
+	font-size: 110%;
+}
+.selectors {
+	text-align: center;
+}
+
+.gallery {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: flex-start;
+}
+.screenshot {
+	border: 1px solid #666;
+	background: #CDE;
+	color: black;
+	padding: 0.5em;
+}
+.screenshot img {
+	display: block;
+	margin: 0 auto;
+}
+.screenshot label {
+	display: block;
+	text-align: center;
+	font-size: 90%;
+	font-style: italic;
+}
+
+.link {
+	margin-left: 2em;
+}
+
+code, pre {
+	margin-left: 2em;
+	padding: 0.25em;
+	border: 2px outset gray;
+	background: black;
+	color: #CCC;
+	font: bold 100% monospace;
+}
+
+/* show/hide magic */
+body.win .lin:not(.win),
+body.win .osx:not(.win),
+body.lin .win:not(.lin),
+body.lin .osx:not(.lin),
+body.osx .win:not(.osx),
+body.osx .lin:not(.osx),
+body.bin .src:not(.bin),
+body.bin .venv:not(.bin),
+body.src .bin:not(.src),
+body.src .venv:not(.src),
+body.venv .bin:not(.venv),
+body.venv .src:not(.venv),
+body:not(.noscript) .noscript,
+body.noscript .yesscript {
+	display: none;
+}
