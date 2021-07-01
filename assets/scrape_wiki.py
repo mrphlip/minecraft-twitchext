@@ -8,10 +8,13 @@ import collections
 # https://minecraft.gamepedia.com/Advancements
 # https://minecraft.gamepedia.com/Module:InvSprite
 #   of a version that matches the https://minecraft.fandom.com/wiki/File:InvSprite.png
+# https://minecraft.fandom.com/wiki/Module:Protocol_version/Versions
 with open("advancements.txt") as fp:
 	ADVANCEMENTS = fp.read()
 with open("invsprite.txt") as fp:
 	INVSPRITE = fp.read()
+with open("dataversion.txt") as fp:
+	DATAVERSION = fp.read()
 
 # advancements json from a save with all advancements unlocked
 # for the criteria data
@@ -63,3 +66,17 @@ for tag in re_advancement.findall(ADVANCEMENTS):
 	}))
 with open("new_advancement_data.json", "w") as fp:
 	json.dump(data, fp, indent=2)
+
+# generate data version data
+MIN_VERSION = 1139
+re_version = re.compile(r"ver\s*\(\s*java\s*,\s*'([^']*)'\s*,[^,]*,\s*(\d+)\s*\)")
+versions = {}
+for ver in re_version.findall(DATAVERSION):
+	name, dv = ver
+	dv = int(dv)
+	if dv >= MIN_VERSION:
+		versions[dv] = name
+with open("data_versions.json", "w") as fp:
+	json.dump(versions, fp, indent=2)
+with open("../extension/public/data_versions.json", "w") as fp:
+	json.dump(versions, fp, indent=2)
