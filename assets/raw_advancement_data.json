@@ -101,20 +101,20 @@
 			"level": "advancement",
 			"criteria": [
 				{
-					"id": "iron_boots",
-					"description": "Iron Boots"
+					"id": "iron_helmet",
+					"description": "Iron Helmet"
 				},
 				{
 					"id": "iron_chestplate",
 					"description": "Iron Chestplate"
 				},
 				{
-					"id": "iron_helmet",
-					"description": "Iron Helmet"
-				},
-				{
 					"id": "iron_leggings",
 					"description": "Iron Leggings"
+				},
+				{
+					"id": "iron_boots",
+					"description": "Iron Boots"
 				}
 			],
 			"mode": "any"
@@ -123,7 +123,7 @@
 			"id": "minecraft:story/deflect_arrow",
 			"category": "minecraft:story",
 			"name": "Not Today, Thank You",
-			"description": "Deflect an arrow with a shield",
+			"description": "Deflect an projectile with a shield",
 			"icon": 2526,
 			"level": "advancement",
 			"criteria": [
@@ -254,20 +254,20 @@
 			"level": "advancement",
 			"criteria": [
 				{
-					"id": "diamond_boots",
-					"description": "Diamond Boots"
+					"id": "diamond_helmet",
+					"description": "Diamond Helmet"
 				},
 				{
 					"id": "diamond_chestplate",
 					"description": "Diamond Chestplate"
 				},
 				{
-					"id": "diamond_helmet",
-					"description": "Diamond Helmet"
-				},
-				{
 					"id": "diamond_leggings",
 					"description": "Diamond Leggings"
+				},
+				{
+					"id": "diamond_boots",
+					"description": "Diamond Boots"
 				}
 			],
 			"mode": "any"
@@ -329,6 +329,94 @@
 			]
 		},
 		{
+			"id": "minecraft:nether/find_bastion",
+			"category": "minecraft:nether",
+			"name": "Those Were the Days",
+			"description": "Enter a Bastion Remnant",
+			"icon": 274,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "bastion",
+					"description": "Bastion"
+				}
+			],
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/loot_bastion",
+			"category": "minecraft:nether",
+			"name": "War Pigs",
+			"description": "Loot a chest in a Bastion Remnant",
+			"icon": 1238,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "loot_bastion_bridge",
+					"description": "Loot Bastion Bridge"
+				},
+				{
+					"id": "loot_bastion_hoglin_stable",
+					"description": "Loot Bastion Hoglin Stable"
+				},
+				{
+					"id": "loot_bastion_treasure",
+					"description": "Loot Bastion Treasure"
+				},
+				{
+					"id": "loot_bastion_other",
+					"description": "Loot Bastion Other"
+				}
+			],
+			"mode": "any",
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/obtain_ancient_debris",
+			"category": "minecraft:nether",
+			"name": "Hidden in the Depths",
+			"description": "Obtain Ancient Debris",
+			"icon": 133,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "ancient_debris",
+					"description": "Ancient Debris"
+				}
+			],
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/use_lodestone",
+			"category": "minecraft:nether",
+			"name": "Country Lode, Take Me Home",
+			"description": "Use a compass on a Lodestone",
+			"icon": 221,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "use_lodestone",
+					"description": "Use Lodestone"
+				}
+			],
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/netherite_armor",
+			"category": "minecraft:nether",
+			"name": "Cover Me in Debris",
+			"description": "Get a full suit of Netherite armor",
+			"icon": 142,
+			"level": "challenge",
+			"criteria": [
+				{
+					"id": "netherite_armor",
+					"description": "Netherite Armor"
+				}
+			],
+			"since": 2536
+		},
+		{
 			"id": "minecraft:nether/fast_travel",
 			"category": "minecraft:nether",
 			"name": "Subspace Bubble",
@@ -375,7 +463,7 @@
 			"category": "minecraft:nether",
 			"name": "Withering Heights",
 			"description": "Summon the Wither",
-			"icon": 3521,
+			"icon": 354,
 			"level": "advancement",
 			"criteria": [
 				{
@@ -431,7 +519,7 @@
 			"category": "minecraft:nether",
 			"name": "Local Brewery",
 			"description": "Brew a potion",
-			"icon": 3457,
+			"icon": 1402,
 			"level": "advancement",
 			"criteria": [
 				{
@@ -467,6 +555,103 @@
 					"description": "All Effects"
 				}
 			]
+		},
+		{
+			"id": "minecraft:nether/obtain_crying_obsidian",
+			"category": "minecraft:nether",
+			"name": "Who is Cutting Onions?",
+			"description": "Obtain Crying Obsidian",
+			"icon": 196,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "crying_obsidian",
+					"description": "Crying Obsidian"
+				}
+			],
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/charge_respawn_anchor",
+			"category": "minecraft:nether",
+			"name": "Not Quite \"Nine\" Lives",
+			"description": "Charge a Respawn Anchor to the maximum",
+			"icon": 206,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "charge_respawn_anchor",
+					"description": "Charge Respawn Anchor"
+				}
+			],
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/distract_piglin",
+			"category": "minecraft:nether",
+			"name": "Oh Shiny",
+			"description": "Distract Piglins with gold",
+			"icon": 3513,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "distract_piglin",
+					"description": "Distract Piglin by dropping gold"
+				},
+				{
+					"id": "distract_piglin_directly",
+					"description": "Distract Piglin by handing over gold"
+				}
+			],
+			"mode": "any",
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/ride_strider",
+			"category": "minecraft:nether",
+			"name": "This Boat Has Legs",
+			"description": "Ride a Strider with a Warped Fungus on a Stick",
+			"icon": 223,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "used_warped_fungus_on_a_stick",
+					"description": "Used Warped Fungus on a Stick"
+				}
+			],
+			"since": 2536
+		},
+		{
+			"id": "minecraft:nether/explore_nether",
+			"category": "minecraft:nether",
+			"name": "Hot Tourist Destinations",
+			"description": "Explore all Nether biomes",
+			"icon": 141,
+			"level": "challenge",
+			"criteria": [
+				{
+					"id": "minecraft:basalt_deltas",
+					"description": "Basalt Deltas"
+				},
+				{
+					"id": "minecraft:crimson_forest",
+					"description": "Crimson Forest"
+				},
+				{
+					"id": "minecraft:nether_wastes",
+					"description": "Nether Wastes"
+				},
+				{
+					"id": "minecraft:soul_sand_valley",
+					"description": "Soul Sand Valley"
+				},
+				{
+					"id": "minecraft:warped_forest",
+					"description": "Warped Forest"
+				}
+			],
+			"mode": "all",
+			"since": 2536
 		},
 		{
 			"id": "minecraft:end/root",
@@ -625,7 +810,8 @@
 					"id": "voluntary_exile",
 					"description": "Ominous Banner"
 				}
-			]
+			],
+			"since": 1970
 		},
 		{
 			"id": "minecraft:adventure/hero_of_the_village",
@@ -639,7 +825,53 @@
 					"id": "hero_of_the_village",
 					"description": "Raid Defeated"
 				}
-			]
+			],
+			"since": 1970
+		},
+		{
+			"id": "minecraft:adventure/spyglass_at_parrot",
+			"category": "minecraft:adventure",
+			"name": "Is It a Bird?",
+			"description": "Look at a parrot through a spyglass",
+			"icon": 427,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "spyglass_at_parrot",
+					"description": "Spy Parrot"
+				}
+			],
+			"since": 2716
+		},
+		{
+			"id": "minecraft:adventure/spyglass_at_ghast",
+			"category": "minecraft:adventure",
+			"name": "Is It a Balloon?",
+			"description": "Look at a ghast through a spyglass",
+			"icon": 427,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "spyglass_at_ghast",
+					"description": "Spy Ghast"
+				}
+			],
+			"since": 2716
+		},
+		{
+			"id": "minecraft:adventure/spyglass_at_dragon",
+			"category": "minecraft:adventure",
+			"name": "Is It a Plane?",
+			"description": "Look at the Ender Dragon through a spyglass",
+			"icon": 427,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "spyglass_at_dragon",
+					"description": "Spy Dragon"
+				}
+			],
+			"since": 2716
 		},
 		{
 			"id": "minecraft:adventure/kill_a_mob",
@@ -663,11 +895,27 @@
 				},
 				{
 					"id": "minecraft:drowned",
-					"description": "Drowned"
+					"description": "Drowned",
+					"since": 1478
+				},
+				{
+					"id": "minecraft:elder_guardian",
+					"description": "Elder Guardian",
+					"since": 2569
+				},
+				{
+					"id": "minecraft:ender_dragon",
+					"description": "Ender Dragon",
+					"since": 2569
 				},
 				{
 					"id": "minecraft:enderman",
 					"description": "Enderman"
+				},
+				{
+					"id": "minecraft:endermite",
+					"description": "Endermite",
+					"since": 2569
 				},
 				{
 					"id": "minecraft:evoker",
@@ -682,6 +930,11 @@
 					"description": "Guardian"
 				},
 				{
+					"id": "minecraft:hoglin",
+					"description": "Hoglin",
+					"since": 2506
+				},
+				{
 					"id": "minecraft:husk",
 					"description": "Husk"
 				},
@@ -691,15 +944,33 @@
 				},
 				{
 					"id": "minecraft:phantom",
-					"description": "Phantom"
+					"description": "Phantom",
+					"since": 1467
+				},
+				{
+					"id": "minecraft:piglin",
+					"description": "Piglin",
+					"since": 2506
+				},
+				{
+					"id": "minecraft:piglin_brute",
+					"description": "Piglin Brute",
+					"since": 2569
 				},
 				{
 					"id": "minecraft:pillager",
-					"description": "Pillager"
+					"description": "Pillager",
+					"since": 1901
+				},
+				{
+					"id": "minecraft:polar_bear",
+					"description": "Polar Bear",
+					"until": 1944
 				},
 				{
 					"id": "minecraft:ravager",
-					"description": "Ravager"
+					"description": "Ravager",
+					"since": 1901
 				},
 				{
 					"id": "minecraft:shulker",
@@ -726,6 +997,11 @@
 					"description": "Stray"
 				},
 				{
+					"id": "minecraft:vex",
+					"description": "Vex",
+					"since": 2524
+				},
+				{
 					"id": "minecraft:vindicator",
 					"description": "Vindicator"
 				},
@@ -734,8 +1010,18 @@
 					"description": "Witch"
 				},
 				{
+					"id": "minecraft:wither",
+					"description": "Wither",
+					"since": 2524
+				},
+				{
 					"id": "minecraft:wither_skeleton",
 					"description": "Wither Skeleton"
+				},
+				{
+					"id": "minecraft:zoglin",
+					"description": "Zoglin",
+					"since": 2524
 				},
 				{
 					"id": "minecraft:zombie",
@@ -743,11 +1029,17 @@
 				},
 				{
 					"id": "minecraft:zombie_pigman",
-					"description": "Zombie Pigman"
+					"description": "Zombie Pigman",
+					"until": 2510
 				},
 				{
 					"id": "minecraft:zombie_villager",
 					"description": "Zombie Villager"
+				},
+				{
+					"id": "minecraft:zombified_piglin",
+					"description": "Zombified Piglin",
+					"since": 2510
 				}
 			],
 			"mode": "any"
@@ -764,7 +1056,8 @@
 					"id": "shot_trident",
 					"description": "Thrown Trident"
 				}
-			]
+			],
+			"since": 1479
 		},
 		{
 			"id": "minecraft:adventure/very_very_frightening",
@@ -778,7 +1071,8 @@
 					"id": "struck_villager",
 					"description": "Struck Villager"
 				}
-			]
+			],
+			"since": 1479
 		},
 		{
 			"id": "minecraft:adventure/shoot_arrow",
@@ -798,7 +1092,7 @@
 			"id": "minecraft:adventure/sniper_duel",
 			"category": "minecraft:adventure",
 			"name": "Sniper Duel",
-			"description": "Kill a Skeleton from more than 50 meters away",
+			"description": "Kill a Skeleton from at least 50 meters away",
 			"icon": 1266,
 			"level": "challenge",
 			"criteria": [
@@ -807,6 +1101,21 @@
 					"description": "Killed Skeleton"
 				}
 			]
+		},
+		{
+			"id": "minecraft:adventure/bullseye",
+			"category": "minecraft:adventure",
+			"name": "Bullseye",
+			"description": "Hit the bullseye of a Target block from at least 30 meters away",
+			"icon": 195,
+			"level": "challenge",
+			"criteria": [
+				{
+					"id": "bullseye",
+					"description": "Bullseye"
+				}
+			],
+			"since": 2510
 		},
 		{
 			"id": "minecraft:adventure/kill_all_mobs",
@@ -830,11 +1139,27 @@
 				},
 				{
 					"id": "minecraft:drowned",
-					"description": "Drowned"
+					"description": "Drowned",
+					"since": 1478
+				},
+				{
+					"id": "minecraft:elder_guardian",
+					"description": "Elder Guardian",
+					"since": 2569
+				},
+				{
+					"id": "minecraft:ender_dragon",
+					"description": "Ender Dragon",
+					"since": 2569
 				},
 				{
 					"id": "minecraft:enderman",
 					"description": "Enderman"
+				},
+				{
+					"id": "minecraft:endermite",
+					"description": "Endermite",
+					"since": 2569
 				},
 				{
 					"id": "minecraft:evoker",
@@ -849,6 +1174,11 @@
 					"description": "Guardian"
 				},
 				{
+					"id": "minecraft:hoglin",
+					"description": "Hoglin",
+					"since": 2506
+				},
+				{
 					"id": "minecraft:husk",
 					"description": "Husk"
 				},
@@ -858,15 +1188,33 @@
 				},
 				{
 					"id": "minecraft:phantom",
-					"description": "Phantom"
+					"description": "Phantom",
+					"since": 1467
+				},
+				{
+					"id": "minecraft:piglin",
+					"description": "Piglin",
+					"since": 2506
+				},
+				{
+					"id": "minecraft:piglin_brute",
+					"description": "Piglin Brute",
+					"since": 2569
 				},
 				{
 					"id": "minecraft:pillager",
-					"description": "Pillager"
+					"description": "Pillager",
+					"since": 1901
+				},
+				{
+					"id": "minecraft:polar_bear",
+					"description": "Polar Bear",
+					"until": 1944
 				},
 				{
 					"id": "minecraft:ravager",
-					"description": "Ravager"
+					"description": "Ravager",
+					"since": 1901
 				},
 				{
 					"id": "minecraft:shulker",
@@ -893,6 +1241,11 @@
 					"description": "Stray"
 				},
 				{
+					"id": "minecraft:vex",
+					"description": "Vex",
+					"since": 2524
+				},
+				{
 					"id": "minecraft:vindicator",
 					"description": "Vindicator"
 				},
@@ -901,8 +1254,18 @@
 					"description": "Witch"
 				},
 				{
+					"id": "minecraft:wither",
+					"description": "Wither",
+					"since": 2524
+				},
+				{
 					"id": "minecraft:wither_skeleton",
 					"description": "Wither Skeleton"
+				},
+				{
+					"id": "minecraft:zoglin",
+					"description": "Zoglin",
+					"since": 2524
 				},
 				{
 					"id": "minecraft:zombie",
@@ -910,11 +1273,17 @@
 				},
 				{
 					"id": "minecraft:zombie_pigman",
-					"description": "Zombie Pigman"
+					"description": "Zombie Pigman",
+					"until": 2510
 				},
 				{
 					"id": "minecraft:zombie_villager",
 					"description": "Zombie Villager"
+				},
+				{
+					"id": "minecraft:zombified_piglin",
+					"description": "Zombified Piglin",
+					"since": 2510
 				}
 			],
 			"mode": "all"
@@ -962,6 +1331,21 @@
 			]
 		},
 		{
+			"id": "minecraft:adventure/honey_block_slide",
+			"category": "minecraft:adventure",
+			"name": "Sticky Situation",
+			"description": "Jump into a Honey Block to break your fall",
+			"icon": 106,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "honey_block_slide",
+					"description": "Honey Block Slide"
+				}
+			],
+			"since": 2216
+		},
+		{
 			"id": "minecraft:adventure/ol_betsy",
 			"category": "minecraft:adventure",
 			"name": "Ol' Betsy",
@@ -973,7 +1357,8 @@
 					"id": "shot_crossbow",
 					"description": "Shot Crossbow"
 				}
-			]
+			],
+			"since": 1901
 		},
 		{
 			"id": "minecraft:adventure/two_birds_one_arrow",
@@ -987,7 +1372,8 @@
 					"id": "two_birds",
 					"description": "Kill two Phantoms with Crossbow"
 				}
-			]
+			],
+			"since": 1901
 		},
 		{
 			"id": "minecraft:adventure/whos_the_pillager_now",
@@ -1001,7 +1387,8 @@
 					"id": "kill_pillager",
 					"description": "Kill Pillager with Crossbow"
 				}
-			]
+			],
+			"since": 1901
 		},
 		{
 			"id": "minecraft:adventure/arbalistic",
@@ -1015,13 +1402,44 @@
 					"id": "arbalistic",
 					"description": "Kill five mobs with Crossbow"
 				}
-			]
+			],
+			"since": 1901
+		},
+		{
+			"id": "minecraft:adventure/lightning_rod_with_villager_no_fire",
+			"category": "minecraft:adventure",
+			"name": "Surge Protector",
+			"description": "Protect a villager from an undesired shock without starting a fire",
+			"icon": 414,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "lightning_rod_with_villager_no_fire",
+					"description": "Lightning Rod, With Villager, No Fire"
+				}
+			],
+			"since": 2716
+		},
+		{
+			"id": "minecraft:adventure/walk_on_powder_snow_with_leather_boots",
+			"category": "minecraft:adventure",
+			"name": "Light as a Rabbit",
+			"description": "Walk on powder snow...without sinking in it",
+			"icon": 2514,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "walk_on_powder_snow_with_leather_boots",
+					"description": "Walk on Powder Snow with Leather Boots"
+				}
+			],
+			"since": 2716
 		},
 		{
 			"id": "minecraft:adventure/sleep_in_bed",
 			"category": "minecraft:adventure",
 			"name": "Sweet Dreams",
-			"description": "Change your respawn point",
+			"description": "Sleep in a bed to change your respawn point",
 			"icon": 3183,
 			"level": "advancement",
 			"criteria": [
@@ -1041,23 +1459,33 @@
 			"criteria": [
 				{
 					"id": "minecraft:badlands",
-					"description": "Badlands"
+					"description": "Badlands",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:badlands_plateau",
-					"description": "Badlands Plateau"
+					"description": "Badlands Plateau",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:bamboo_jungle",
-					"description": "Bamboo Jungle"
+					"description": "Bamboo Jungle",
+					"since": 1952
 				},
 				{
 					"id": "minecraft:bamboo_jungle_hills",
-					"description": "Bamboo Jungle Hills"
+					"description": "Bamboo Jungle Hills",
+					"since": 1952
 				},
 				{
 					"id": "minecraft:beach",
-					"description": "Beach"
+					"description": "Beach",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:beaches",
+					"description": "Beaches",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:birch_forest",
@@ -1068,24 +1496,39 @@
 					"description": "Birch Forest Hills"
 				},
 				{
+					"id": "minecraft:cold_beach",
+					"description": "Cold Beach",
+					"until": 1519
+				},
+				{
 					"id": "minecraft:cold_ocean",
-					"description": "Cold Ocean"
+					"description": "Cold Ocean",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:dark_forest",
-					"description": "Dark Forest"
+					"description": "Dark Forest",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:deep_cold_ocean",
-					"description": "Deep Cold Ocean"
+					"description": "Deep Cold Ocean",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:deep_frozen_ocean",
-					"description": "Deep Frozen Ocean"
+					"description": "Deep Frozen Ocean",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:deep_lukewarm_ocean",
-					"description": "Deep Lukewarm Ocean"
+					"description": "Deep Lukewarm Ocean",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:deep_ocean",
+					"description": "Deep Ocean",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:desert",
@@ -1096,8 +1539,23 @@
 					"description": "Desert Hills"
 				},
 				{
+					"id": "minecraft:extreme_hills",
+					"description": "Extreme Hills",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:extreme_hills_with_trees",
+					"description": "Extreme Hills With Trees",
+					"until": 1519
+				},
+				{
 					"id": "minecraft:forest",
 					"description": "Forest"
+				},
+				{
+					"id": "minecraft:forest_hills",
+					"description": "Forest Hills",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:frozen_river",
@@ -1105,11 +1563,23 @@
 				},
 				{
 					"id": "minecraft:giant_tree_taiga",
-					"description": "Giant Tree Taiga"
+					"description": "Giant Tree Taiga",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:giant_tree_taiga_hills",
-					"description": "Giant Tree Taiga Hills"
+					"description": "Giant Tree Taiga Hills",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:ice_flats",
+					"description": "Ice Flats",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:ice_mountains",
+					"description": "Ice Mountains",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:jungle",
@@ -1125,27 +1595,76 @@
 				},
 				{
 					"id": "minecraft:lukewarm_ocean",
-					"description": "Lukewarm Ocean"
+					"description": "Lukewarm Ocean",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:mesa",
+					"description": "Mesa",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:mesa_clear_rock",
+					"description": "Mesa Clear Rock",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:mesa_rock",
+					"description": "Mesa Rock",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:mountains",
-					"description": "Mountains"
+					"description": "Mountains",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:mushroom_field_shore",
-					"description": "Mushroom Field Shore"
+					"description": "Mushroom Field Shore",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:mushroom_fields",
-					"description": "Mushroom Fields"
+					"description": "Mushroom Fields",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:mushroom_island",
+					"description": "Mushroom Island",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:mushroom_island_shore",
+					"description": "Mushroom Island Shore",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:ocean",
+					"description": "Ocean",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:plains",
 					"description": "Plains"
 				},
 				{
+					"id": "minecraft:redwood_taiga",
+					"description": "Redwood Taiga",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:redwood_taiga_hills",
+					"description": "Redwood Taiga Hills",
+					"until": 1519
+				},
+				{
 					"id": "minecraft:river",
 					"description": "River"
+				},
+				{
+					"id": "minecraft:roofed_forest",
+					"description": "Roofed Forest",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:savanna",
@@ -1153,39 +1672,72 @@
 				},
 				{
 					"id": "minecraft:savanna_plateau",
-					"description": "Savanna Plateau"
+					"description": "Savanna Plateau",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:savanna_rock",
+					"description": "Savanna Rock",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:snowy_beach",
-					"description": "Snowy Beach"
+					"description": "Snowy Beach",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:snowy_mountains",
-					"description": "Snowy Mountains"
+					"description": "Snowy Mountains",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:snowy_taiga",
-					"description": "Snowy Taiga"
+					"description": "Snowy Taiga",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:snowy_taiga_hills",
-					"description": "Snowy Taiga Hills"
+					"description": "Snowy Taiga Hills",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:snowy_tundra",
-					"description": "Snowy Tundra"
+					"description": "Snowy Tundra",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:stone_beach",
+					"description": "Stone Beach",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:stone_shore",
-					"description": "Stone Shore"
+					"description": "Stone Shore",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:swamp",
-					"description": "Swamp"
+					"description": "Swamp",
+					"since": 1519
+				},
+				{
+					"id": "minecraft:swampland",
+					"description": "Swampland",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:taiga",
 					"description": "Taiga"
+				},
+				{
+					"id": "minecraft:taiga_cold",
+					"description": "Taiga Cold",
+					"until": 1519
+				},
+				{
+					"id": "minecraft:taiga_cold_hills",
+					"description": "Taiga Cold Hills",
+					"until": 1519
 				},
 				{
 					"id": "minecraft:taiga_hills",
@@ -1193,19 +1745,23 @@
 				},
 				{
 					"id": "minecraft:warm_ocean",
-					"description": "Warm Ocean"
+					"description": "Warm Ocean",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:wooded_badlands_plateau",
-					"description": "Wooded Badlands Plateau"
+					"description": "Wooded Badlands Plateau",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:wooded_hills",
-					"description": "Wooded Hills"
+					"description": "Wooded Hills",
+					"since": 1519
 				},
 				{
 					"id": "minecraft:wooded_mountains",
-					"description": "Wooded Mountains"
+					"description": "Wooded Mountains",
+					"since": 1519
 				}
 			],
 			"mode": "all"
@@ -1223,6 +1779,51 @@
 					"description": "Consumed Food"
 				}
 			]
+		},
+		{
+			"id": "minecraft:husbandry/safely_harvest_honey",
+			"category": "minecraft:husbandry",
+			"name": "Bee Our Guest",
+			"description": "Use a Campfire to collect Honey from a Beehive using a Bottle without aggravating the bees",
+			"icon": 60,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "safely_harvest_honey",
+					"description": "Safely harvest honey"
+				}
+			],
+			"since": 2216
+		},
+		{
+			"id": "minecraft:husbandry/wax_on",
+			"category": "minecraft:husbandry",
+			"name": "Wax On",
+			"description": "Apply Honeycomb to a Copper block!",
+			"icon": 61,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "wax_on",
+					"description": "Wax On"
+				}
+			],
+			"since": 2716
+		},
+		{
+			"id": "minecraft:husbandry/wax_off",
+			"category": "minecraft:husbandry",
+			"name": "Wax Off",
+			"description": "Scrape Wax off of a Copper block!",
+			"icon": 3583,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "wax_off",
+					"description": "Wax Off"
+				}
+			],
+			"since": 2716
 		},
 		{
 			"id": "minecraft:husbandry/breed_an_animal",
@@ -1247,8 +1848,19 @@
 			"level": "challenge",
 			"criteria": [
 				{
+					"id": "minecraft:axolotl",
+					"description": "Axolotl",
+					"since": 2705
+				},
+				{
+					"id": "minecraft:bee",
+					"description": "Bee",
+					"since": 2201
+				},
+				{
 					"id": "minecraft:cat",
-					"description": "Cat"
+					"description": "Cat",
+					"since": 1907
 				},
 				{
 					"id": "minecraft:chicken",
@@ -1259,8 +1871,24 @@
 					"description": "Cow"
 				},
 				{
+					"id": "minecraft:donkey",
+					"description": "Donkey",
+					"since": 2556
+				},
+				{
 					"id": "minecraft:fox",
-					"description": "Fox"
+					"description": "Fox",
+					"since": 1940
+				},
+				{
+					"id": "minecraft:goat",
+					"description": "Goat",
+					"since": 2705
+				},
+				{
+					"id": "minecraft:hoglin",
+					"description": "Hoglin",
+					"since": 2515
 				},
 				{
 					"id": "minecraft:horse",
@@ -1275,12 +1903,18 @@
 					"description": "Mooshroom"
 				},
 				{
+					"id": "minecraft:mule",
+					"description": "Mule",
+					"since": 2556
+				},
+				{
 					"id": "minecraft:ocelot",
 					"description": "Ocelot"
 				},
 				{
 					"id": "minecraft:panda",
-					"description": "Panda"
+					"description": "Panda",
+					"since": 1907
 				},
 				{
 					"id": "minecraft:pig",
@@ -1295,8 +1929,14 @@
 					"description": "Sheep"
 				},
 				{
+					"id": "minecraft:strider",
+					"description": "Strider",
+					"since": 2537
+				},
+				{
 					"id": "minecraft:turtle",
-					"description": "Turtle"
+					"description": "Turtle",
+					"since": 1467
 				},
 				{
 					"id": "minecraft:wolf",
@@ -1304,6 +1944,21 @@
 				}
 			],
 			"mode": "all"
+		},
+		{
+			"id": "minecraft:husbandry/ride_a_boat_with_a_goat",
+			"category": "minecraft:husbandry",
+			"name": "Whatever Floats Your Goat!",
+			"description": "Get in a Boat and float with a Goat",
+			"icon": 3627,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "ride_a_boat_with_a_goat",
+					"description": "Ride a boat with a goat"
+				}
+			],
+			"since": 2716
 		},
 		{
 			"id": "minecraft:husbandry/tame_an_animal",
@@ -1372,7 +2027,23 @@
 					"description": "White"
 				}
 			],
-			"mode": "all"
+			"mode": "all",
+			"since": 1907
+		},
+		{
+			"id": "minecraft:husbandry/make_a_sign_glow",
+			"category": "minecraft:husbandry",
+			"name": "Glow and Behold!",
+			"description": "Make the text of a sign glow",
+			"icon": 455,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "make_a_sign_glow",
+					"description": "Make a sign glow"
+				}
+			],
+			"since": 2716
 		},
 		{
 			"id": "minecraft:husbandry/fishy_business",
@@ -1399,7 +2070,8 @@
 					"description": "Tropical Fish"
 				}
 			],
-			"mode": "any"
+			"mode": "any",
+			"since": 1479
 		},
 		{
 			"id": "minecraft:husbandry/tactical_fishing",
@@ -1426,7 +2098,53 @@
 					"description": "Bucket of Tropical Fish"
 				}
 			],
-			"mode": "any"
+			"mode": "any",
+			"since": 1479
+		},
+		{
+			"id": "minecraft:husbandry/axolotl_in_a_bucket",
+			"category": "minecraft:husbandry",
+			"name": "The Cutest Predator",
+			"description": "Catch an axolotl in a bucket",
+			"icon": 444,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "axolotl_bucket",
+					"description": "Axolotl in a Bucket"
+				}
+			],
+			"since": 2716
+		},
+		{
+			"id": "minecraft:husbandry/kill_axolotl_target",
+			"category": "minecraft:husbandry",
+			"name": "The Healing Power of Friendship",
+			"description": "Team up with an axolotl and win a fight",
+			"icon": 2027,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "kill_axolotl_target",
+					"description": "Kill Axolotl target"
+				}
+			],
+			"since": 2716
+		},
+		{
+			"id": "minecraft:husbandry/silk_touch_nest",
+			"category": "minecraft:husbandry",
+			"name": "Total Beelocation",
+			"description": "Move a Bee Nest, with 3 bees inside, using Silk Touch",
+			"icon": 63,
+			"level": "advancement",
+			"criteria": [
+				{
+					"id": "silk_touch_nest",
+					"description": "Silk Touch a Nest"
+				}
+			],
+			"since": 2216
 		},
 		{
 			"id": "minecraft:husbandry/plant_seed",
@@ -1541,11 +2259,17 @@
 				},
 				{
 					"id": "dried_kelp",
-					"description": "Dried Kelp"
+					"description": "Dried Kelp",
+					"since": 1467
 				},
 				{
 					"id": "enchanted_golden_apple",
 					"description": "Enchanted Golden Apple"
+				},
+				{
+					"id": "glow_berries",
+					"description": "Glow Berries",
+					"since": 2690
 				},
 				{
 					"id": "golden_apple",
@@ -1554,6 +2278,11 @@
 				{
 					"id": "golden_carrot",
 					"description": "Golden Carrot"
+				},
+				{
+					"id": "honey_bottle",
+					"description": "Honey Bottle",
+					"since": 2201
 				},
 				{
 					"id": "melon_slice",
@@ -1609,11 +2338,13 @@
 				},
 				{
 					"id": "suspicious_stew",
-					"description": "Suspicious Stew"
+					"description": "Suspicious Stew",
+					"since": 1937
 				},
 				{
 					"id": "sweet_berries",
-					"description": "Sweet Berries"
+					"description": "Sweet Berries",
+					"since": 1937
 				},
 				{
 					"id": "tropical_fish",
@@ -1634,7 +2365,23 @@
 					"id": "broke_hoe",
 					"description": "Broke Hoe"
 				}
-			]
+			],
+			"until": 2536
+		},
+		{
+			"id": "minecraft:husbandry/obtain_netherite_hoe",
+			"category": "minecraft:husbandry",
+			"name": "Serious Dedication",
+			"description": "Use a Netherite Ingot-Netherite ingot to upgrade a hoe, and then reevaluate your life choices",
+			"icon": 137,
+			"level": "challenge",
+			"criteria": [
+				{
+					"id": "netherite_hoe",
+					"description": "Netherite Hoe"
+				}
+			],
+			"since": 2536
 		}
 	]
 }
