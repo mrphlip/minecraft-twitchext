@@ -3,21 +3,29 @@ Twitch.ext.onContext(function(context) {
     document.documentElement.className = 'theme-' + context.theme;
 });
 
-var advancement_data;
+var advancement_data, version_data;
 function init() {
     var init_state;
     
-    // Need to wait for both:
+    // Need to wait for all three:
     //  * jQuery is fully inited and fetch our master json
+    //  * jQuery fetch our data_versions json
     //  * Twitch is fully inited and passes us the config data
-    // which could happen in either order...
+    // which could happen in any order...
 
     $(function() {
         $.getJSON("advancement_data.json", function(adv_data) {
             Twitch.ext.rig.log('adv_data loaded');
             advancement_data = adv_data;
 
-            if(init_state)
+            if(init_state && version_data)
+                all_loaded();
+        });
+        $.getJSON("data_versions.json", function(ver_data) {
+            Twitch.ext.rig.log('ver_data loaded');
+            version_data = ver_data;
+
+            if(init_state && advancement_data)
                 all_loaded();
         });
     });
@@ -30,7 +38,7 @@ function init() {
             init_state = 'none';
         }
 
-        if(advancement_data)
+        if(advancement_data && version_data)
             all_loaded();
     });
 

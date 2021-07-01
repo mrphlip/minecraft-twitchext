@@ -1,12 +1,31 @@
+var DEFAULT_VERSION = 1963; // 1.14.2 - the version this was originally wrtten for, before multiversion support was implemeneted
+var current_version = -1;
+
 function on_loaded() {
-    build_page();
 }
 
 function css_class(name) {
     return name.replace(/[:\/]/g, '-');
 }
 
-function build_page() {
+function ver_check(item, target_version) {
+    if (item.since && item.since > target_version)
+        return false;
+    if (item.until && item.until <= target_version)
+        return false;
+    return true;
+}
+function ver_count(items, target_version) {
+    var count = 0;
+    for (var item of items) {
+        if (ver_check(item, target_version)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+function rebuild_page(target_version) {
     $('.content').tabs({
         activate: tile_unclick,
     });
@@ -18,6 +37,8 @@ function build_page() {
     var detailpane = $('#tab-detail').empty();
     var catpane = {}
     for (var cat of advancement_data.categories) {
+        if (!ver_check(cat, target_version))
+            continue;
         var header = $('<h2>').appendTo(detailpane);
         catpane[cat.id] = $('<div>').appendTo(detailpane);
         header.attr('class', 'catheader labelled');
@@ -25,13 +46,15 @@ function build_page() {
         $('<span>').attr('class', 'label').text(cat.name).appendTo(header);
     }
     for (var adv of advancement_data.advancements) {
+        if (!ver_check(adv, target_version))
+            continue;
         var tile = $('<div>').appendTo(catpane[adv.category]);
         tile.attr('class', 'tile sprite ' + css_class(adv.id));
         if (adv.mode == 'all') {
             var progress = $('<div>').appendTo(tile);
             progress.attr('class', 'tileprogress');
             progress.progressbar({
-                max: adv.criteria.length,
+                max: ver_count(adv.criteria, target_version),
                 value: false,
             });
         }
@@ -52,6 +75,7 @@ function build_page() {
         tile.on('mouseleave', tile_mouseleave);
         tile.click(tile_click);
     }
+    current_version = target_version;
 }
 
 function on_new_state(data) {
@@ -66,8 +90,16 @@ function on_new_state(data) {
         return;
     }
 
+    var target_version = data.world.DataVersion;
+    if (!target_version)
+        target_version = DEFAULT_VERSION;
+    if (target_version != current_version)
+        rebuild_page(target_version);
+
     var count = 0, donecount = 0, latestadv, latestdata;
     for (var adv of advancement_data.advancements) {
+        if (!ver_check(adv, target_version))
+            continue
         count++;
         if (!data.advancements[adv.id]) {
             data.advancements[adv.id] = {done: false, criteria: {}};
@@ -115,6 +147,7 @@ function on_new_state(data) {
     $('.icon').attr('src', data.world.icon);
     $('.playername').text(data.world.name);
     $('.worldname').text(data.world.world);
+    $('.version').text(version_data[data.world.DataVersion] || "");
 
     $('.progress').progressbar('option', 'max', count).progressbar('value', donecount);
     $('.progress-label').text(donecount + " / " + count);
@@ -144,6 +177,8 @@ function generate_tooltip() {
     $('<p>').attr('class', 'description').append(adv.description).appendTo(panel);
     var list = $('<ul>').attr('class', 'criteria').appendTo(panel);
     for (var crit of adv.criteria) {
+        if (!ver_check(crit, current_version))
+            continue;
         var li = $('<li>').text(crit.description).appendTo(list);
         if (advdata.criteria[crit.id])
             li.addClass('done');
