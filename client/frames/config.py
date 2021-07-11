@@ -103,25 +103,19 @@ class MinecraftConfig(wx.Dialog):
 		if not self.config.minecraftbase:
 			dirs = []
 		else:
-			savesdir = os.path.join(self.config.minecraftbase, 'saves')
-			try:
-				dirs = os.listdir(savesdir)
-			except FileNotFoundError:
-				dirs = []
-			else:
-				dirs = [
-					i for i in dirs
-					if os.path.isdir(os.path.join(savesdir, i))
-					and i not in {'.', '..'}]
-			dirs.sort()
+			dirs = self.config.list_worlds()
 
 		self.world_options = dirs
 		self.chs_world.SetItems(dirs)
 		try:
 			ix = dirs.index(self.config.world)
 		except ValueError:
-			self.config.world = None
-			self.chs_world.SetSelection(wx.NOT_FOUND)
+			if dirs == ['.']:
+				self.config.world = '.'
+				self.chs_world.SetSelection(0)
+			else:
+				self.config.world = None
+				self.chs_world.SetSelection(wx.NOT_FOUND)
 		else:
 			self.chs_world.SetSelection(ix)
 		self.refresh_user_list()
@@ -130,18 +124,9 @@ class MinecraftConfig(wx.Dialog):
 		if not self.config.minecraftbase or not self.config.world:
 			userids = usernames = []
 		else:
-			advdir = os.path.join(self.config.minecraftbase, 'saves', self.config.world, 'advancements')
-			try:
-				files = os.listdir(advdir)
-			except FileNotFoundError:
-				files = []
-			else:
-				files = [
-					i for i in files
-					if os.path.isfile(os.path.join(advdir, i))
-					and i.lower().endswith('.json')]
-			users = [(i[:-5], get_minecraft_user(i[:-5])['name']) for i in files]
-			users.sort(key=lambda x:x[1])
+			users = self.config.list_users()
+			users = [(i, get_minecraft_user(i)['name']) for i in users]
+			users.sort(key=lambda x:x[1].lower())
 			userids = [i[0] for i in users]
 			usernames = [i[1] for i in users]
 
