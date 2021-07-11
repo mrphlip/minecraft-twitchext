@@ -69,7 +69,7 @@ with open("new_advancement_data.json", "w") as fp:
 
 # generate data version data
 MIN_VERSION = 1139
-re_version = re.compile(r"ver\s*\(\s*java\s*,\s*'([^']*)'\s*,[^,]*,\s*(\d+)\s*\)")
+re_version = re.compile(r"ver\s*\(\s*(?:java|java_old|java_af)\s*,\s*'([^']*)'\s*,[^,]*,\s*(\d+)\s*\)")
 versions = {}
 for ver in re_version.findall(DATAVERSION):
 	name, dv = ver

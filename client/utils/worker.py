@@ -27,7 +27,7 @@ def build_payload(config):
 		if not k.startswith('minecraft:recipes/')
 	}
 	# sanity-check schema
-	ver = data.pop('DataVersion', None)
+	data.pop('DataVersion', None)
 	data = {
 		advid: {
 			'criteria': {
@@ -38,8 +38,6 @@ def build_payload(config):
 		}
 		for advid, adv in data.items()
 	}
-	if ver:
-		data['DataVersion'] = ver
 
 	# add world metadata
 	user = minecraft.get_minecraft_user(config.userid)
@@ -51,6 +49,7 @@ def build_payload(config):
 			'name': user['name'],
 			'icon': iconurl,
 			'world': config.world,
+			'DataVersion': config.get_dataversion(),
 		},
 		'advancements': data,
 	}

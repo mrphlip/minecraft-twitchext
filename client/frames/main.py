@@ -1,5 +1,6 @@
 import wx
 import wx.lib.newevent
+import json
 from constants import APP_DESCRIPTION, ICON
 from frames.config import MinecraftConfig, TwitchConfig
 from utils.minecraft import get_minecraft_user, get_minecraft_icon
@@ -41,6 +42,10 @@ class MainFrame(wx.Frame):
 		details.Add(wx.StaticText(self, label='Twitch channel:'), 1, wx.ALIGN_RIGHT)
 		self.lbl_twitchuser = wx.StaticText(self, style=wx.ST_ELLIPSIZE_END)
 		details.Add(self.lbl_twitchuser, 1, wx.EXPAND)
+
+		details.Add(wx.StaticText(self, label='Version:'), 1, wx.ALIGN_RIGHT)
+		self.lbl_version = wx.StaticText(self, style=wx.ST_ELLIPSIZE_MIDDLE)
+		details.Add(self.lbl_version, 1, wx.EXPAND)
 
 		sizer.Add(details, 0, wx.EXPAND | wx.ALL, 5)
 		
@@ -85,8 +90,17 @@ class MainFrame(wx.Frame):
 			self.lbl_user.SetLabel('')
 			self.img_user.SetBitmap(wx.NullBitmap)
 		self.lbl_twitchuser.SetLabel(get_twitch_data(self.config.twitchtoken)['name'])
+		self.lbl_version.SetLabel(self.show_version(self.config.get_dataversion()))
 		self.SendSizeEvent()
 		set_watched_file(self.config, self)
+
+	version_cache = None
+	@classmethod
+	def show_version(cls, dataversion):
+		if cls.version_cache is None:
+			with open("../assets/data_versions.json") as fp:
+				cls.version_cache = json.load(fp)
+		return cls.version_cache.get(str(dataversion), f"UNRECOGNISED {dataversion}")
 
 	def on_click_exit(self, event):
 		self.Close()
