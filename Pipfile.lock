@@ -196,6 +196,14 @@
             "markers": "sys_platform == 'win32'",
             "version": "==2021.5.24"
         },
+        "macholib": {
+            "hashes": [
+                "sha256:0c436bc847e7b1d9bda0560351bf76d7caf930fb585a828d13608839ef42c432",
+                "sha256:c500f02867515e6c60a27875b408920d18332ddf96b4035ef03beddd782d4281"
+            ],
+            "markers": "sys_platform == 'darwin'",
+            "version": "==1.14"
+        },
         "pyinstaller": {
             "hashes": [
                 "sha256:0e802c082487719aab6b2a93575819944c008e6e1ba44c7836fc45660a9586c0",
