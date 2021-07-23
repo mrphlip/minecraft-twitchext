@@ -59,24 +59,24 @@
 <pre class="win">&gt; pip install --user pipenv
 &gt; pipenv install</pre>
 <p class="win">You can then start the client by running:</p>
-<pre class="win">&gt; pipenv run python main.py</pre>
+<pre class="win">&gt; cd client
+&gt; pipenv run python main.py</pre>
 
 <p class="lin">Python 3 can be found from most Linux distribution's package managers, consult your distribution for more details. For Ubuntu, the command to run is:</p>
 <pre class="lin">$ sudo apt install python3 python3-pip gtk+-3.0</pre>
 <p class="lin">Note that depending on your distribution, this may not install the most recent version of Python. For example, as of this writing the current Ubuntu LTS installs Python3.8 instead of Python3.9. In that case, you can either install Python3.9 from <a href="https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa">deadsnakes</a>, or edit the <code>Pipfile</code> to change the <code>python_version</code> to the version you have available. Any reasonably-recent version of Python3 should work fine, though I haven't extensively tested this.</p>
 
 <p class="osx">Python 3 can be found in <a href="https://brew.sh/">Homebrew</a>. If you don't already have Homebrew installed, install it first, by opening the Terminal app, and entering:</p>
-<pre class="osx">$ curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby</pre>
+<pre class="osx">$ curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash</pre>
 <p class="osx">Then, install Python 3 with:</p>
 <pre class="osx">$ brew install python3</pre>
 
 <p class="lin osx">Once this is installed, go to wherever you downloaded the source to, and run:</p>
 <pre class="lin osx">$ python3 -m pip install --user pipenv
-$ pipenv install</pre>
+$ <span class="osx">python3 -m </span>pipenv install</pre>
 <p class="lin osx">You can then start the client by running:</p>
-<pre class="lin osx">$ pipenv run ./main.py</pre>
-<p class="osx">Note that the macOS X version of VirtualEnv doesn't play particularly nicely with wxWidgets, so if you get any errors here, consult this page for more information:</p>
-<p class="osx link"><a href="https://wiki.wxpython.org/wxPythonVirtualenvOnMac">https://wiki.wxpython.org/wxPythonVirtualenvOnMac</a></p>
+<pre class="lin osx">$ cd client
+$ <span class="osx">python3 -m </span>pipenv run ./main.py</pre>
 </div>
 
 <h2 id="use_client">Using the monitor utility</h2>
