@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 rm -rf dist/mc_twitchext.app  # otherwise we'll get an overwrite warning
-python3 -m pipenv sync -d
-python3 -m pipenv run python3 -m PyInstaller --onefile --name mc_twitchext --windowed --icon ../assets/icon.icns --add-data ../assets/icon.ico:. main.py
+python3 -m pipenv sync --dev
+python3 -m pipenv run python3 -m PyInstaller --onefile --name mc_twitchext --windowed --icon ../assets/icon.icns --add-data ../assets/icon.ico:. --add-data ../assets/data_versions.json:. main.py
 # pyinstaller creates both dist/mc_twitchext (which doesn't work) and dist/mc_twitchext.app (which does)
 rm dist/mc_twitchext
 # create dmg image

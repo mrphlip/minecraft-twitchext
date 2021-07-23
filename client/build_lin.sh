@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
-python3 -m pipenv sync -d
-python3 -m pipenv run python3 PyInstaller --onefile --name mc_twitchext --windowed --add-data ../assets/icon.ico:. main.py
+python3 -m pipenv sync --dev
+python3 -m pipenv run python3 -m PyInstaller --onefile --name mc_twitchext --windowed --add-data ../assets/icon.ico:. --add-data ../assets/data_versions.json:. main.py
 cd dist
 mv mc_twitchext mc_twitchext.bin
 tar cjf mc_twitchext.tar.bz2 mc_twitchext.bin

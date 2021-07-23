@@ -1,7 +1,7 @@
 import wx
 import wx.lib.newevent
 import json
-from constants import APP_DESCRIPTION, ICON
+from constants import APP_DESCRIPTION, ICON, DATA_VERSIONS_FN
 from frames.config import MinecraftConfig, TwitchConfig
 from utils.minecraft import get_minecraft_user, get_minecraft_icon
 from utils.twitch import get_twitch_data
@@ -98,7 +98,7 @@ class MainFrame(wx.Frame):
 	@classmethod
 	def show_version(cls, dataversion):
 		if cls.version_cache is None:
-			with open("../assets/data_versions.json") as fp:
+			with open(DATA_VERSIONS_FN) as fp:
 				cls.version_cache = json.load(fp)
 		return cls.version_cache.get(str(dataversion), f"UNRECOGNISED {dataversion}")
 
