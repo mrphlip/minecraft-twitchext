@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+watchdog = "*"
+appdirs = "*"
+pathlib2 = "*"
+Pillow = "*"
+wxPython = "*"
+
+[dev-packages]
+pyinstaller = "*"
+
+[requires]
+python_version = "3.9"

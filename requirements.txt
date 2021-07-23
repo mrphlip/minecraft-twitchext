@@ -1,6 +1,0 @@
-Pillow
-watchdog
-appdirs
-pathlib2
-wxPython
-pyinstaller
