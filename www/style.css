@@ -49,12 +49,15 @@ h3 {
 	margin-left: 2em;
 }
 
-code, pre {
+pre {
 	margin-left: 2em;
 	padding: 0.25em;
 	border: 2px outset gray;
 	background: black;
 	color: #CCC;
+	font: bold 100% monospace;
+}
+code {
 	font: bold 100% monospace;
 }
 

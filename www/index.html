@@ -11,7 +11,7 @@
 <h1>Minecraft Advancement Monitor</h1>
 <div class="selectors yesscript">Show instructions for:
 	<select id="os"><option value="win" selected>Windows</option><option value="lin">Linux</option><option value="osx">macOS X</option></select>
-	<select id="build"><option value="bin" selected>Built package (recommended)</option><option value="src">From source</option><option value="venv">From source with virtualenv</option></select>
+	<select id="build"><option value="bin" selected>Built package (recommended)</option><option value="src">From source</option></select>
 </div>
 <p class="osx">Note: I don't personally use OS X, so I'm not particularly familiar with it. These instructions are as good as I can get them, but it's possible you may need to do some additional tweaking to get them to work.</p>
 
@@ -32,7 +32,7 @@
 <p>Ideal for Minecraft streamers doing challenge runs, such as <a href="https://hcmc100.com/">HCMC100</a>, who want their viewers to know how the challenge is progressing.</p>
 
 <h2 id="install_twitch">Installing Twitch Extension</h2>
-<p>To add the Twitch extension to your channel, go to <a href="https://www.twitch.tv/ext/slvinmcxz6qqkut8s3oxckx14ka85w-0.0.1">the extension's page on Twitch</a> and click the Install button in the top right.</p>
+<p>To add the Twitch extension to your channel, go to <a href="https://www.twitch.tv/ext/slvinmcxz6qqkut8s3oxckx14ka85w">the extension's page on Twitch</a> and click the Install button in the top right.</p>
 <div class="gallery"><div class="screenshot"><img src="images/install_start.png" alt="The Twitch extension install page, with the Install button highlighted"></div></div>
 <p>Once the extension is installed, click the Configure button on the confirmation popup.</p>
 <div class="gallery"><div class="screenshot"><img src="images/install_confirm.png" alt="The Twitch install complete confirmation popup"></div></div>
@@ -47,7 +47,7 @@
 <p class="link osx"><a href="mc_twitchext.dmg">https://www.mrphlip.com/mc_twitchext/mc_twitchext.dmg</a></p>
 <p>Download and open that file, and run the program inside.</p>
 </div>
-<div class="src venv">
+<div class="src">
 <p>The code for the monitor utility can be downloaded from:</p>
 <p class="link"><a href="mc_twitchext_src.zip">https://www.mrphlip.com/mc_twitchext/mc_twitchext_src.zip</a></p>
 <p>Or, it can also be found on <a href="https://github.com/mrphlip/minecraft-twitchext">GitHub</a>.</p>
@@ -56,18 +56,14 @@
 <p class="link win"><a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p>
 <p class="win">Download and install the Latest Python 3 release. While running the installer, be sure to choose the option to add Python to your system PATH.</p>
 <p class="win">Open up the Command Prompt, and go to wherever you downloaded the source to, and run:</p>
-<pre class="win src">&gt; python -m pip install -r requirements.txt</pre>
-<pre class="win venv">&gt; python -m pip install virtualenv
-&gt; python -m virtualenv venv
-&gt; venv\Scripts\activate
-&gt; python -m pip install -r requirements.txt</pre>
+<pre class="win">&gt; pip install --user pipenv
+&gt; pipenv install</pre>
 <p class="win">You can then start the client by running:</p>
-<pre class="win src">&gt; python main.py</pre>
-<pre class="win venv">&gt; venv\Scripts\activate
-&gt; python main.py</pre>
+<pre class="win">&gt; pipenv run python main.py</pre>
 
 <p class="lin">Python 3 can be found from most Linux distribution's package managers, consult your distribution for more details. For Ubuntu, the command to run is:</p>
-<pre class="lin">$ sudo apt install python3 python3-pip <span class="venv">python3-virtualenv </span>gtk+-3.0</pre>
+<pre class="lin">$ sudo apt install python3 python3-pip gtk+-3.0</pre>
+<p class="lin">Note that depending on your distribution, this may not install the most recent version of Python. For example, as of this writing the current Ubuntu LTS installs Python3.8 instead of Python3.9. In that case, you can either install Python3.9 from <a href="https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa">deadsnakes</a>, or edit the <code>Pipfile</code> to change the <code>python_version</code> to the version you have available. Any reasonably-recent version of Python3 should work fine, though I haven't extensively tested this.</p>
 
 <p class="osx">Python 3 can be found in <a href="https://brew.sh/">Homebrew</a>. If you don't already have Homebrew installed, install it first, by opening the Terminal app, and entering:</p>
 <pre class="osx">$ curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby</pre>
@@ -75,18 +71,12 @@
 <pre class="osx">$ brew install python3</pre>
 
 <p class="lin osx">Once this is installed, go to wherever you downloaded the source to, and run:</p>
-<pre class="lin src">$ sudo -H python3 -m pip install -r requirements.txt</pre>
-<pre class="osx src">$ python3 -m pip install -r requirements.txt</pre>
-<pre class="lin osx venv"><span class="osx">$ python3 -m pip install virtualenv
-</span>$ python3 -m virtualenv venv
-$ . venv/bin/activate
-$ pip install -r requirements.txt</pre>
+<pre class="lin osx">$ python3 -m pip install --user pipenv
+$ pipenv install</pre>
 <p class="lin osx">You can then start the client by running:</p>
-<pre class="lin osx src">$ ./main.py</pre>
-<pre class="lin osx venv">$ . venv/bin/activate
-$ ./main.py</pre>
-<p class="osx venv">Note that the macOS X version of VirtualEnv doesn't play particularly nicely with wxWidgets, so if you get any errors here, consult this page for more information:</p>
-<p class="osx venv link"><a href="https://wiki.wxpython.org/wxPythonVirtualenvOnMac">https://wiki.wxpython.org/wxPythonVirtualenvOnMac</a></p>
+<pre class="lin osx">$ pipenv run ./main.py</pre>
+<p class="osx">Note that the macOS X version of VirtualEnv doesn't play particularly nicely with wxWidgets, so if you get any errors here, consult this page for more information:</p>
+<p class="osx link"><a href="https://wiki.wxpython.org/wxPythonVirtualenvOnMac">https://wiki.wxpython.org/wxPythonVirtualenvOnMac</a></p>
 </div>
 
 <h2 id="use_client">Using the monitor utility</h2>
