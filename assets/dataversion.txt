@@ -75,7 +75,14 @@ end
 -- JAVA EDITION
 -- FULL RELEASE
 
+-- 1.18
+ver(java, 'Java Edition 1.18 experimental snapshot 2', '0x40000030', 2826)
+ver(java, 'Java Edition 1.18 Experimental Snapshot 1', '0x40000029', 2825)
+
 -- 1.17
+ver(java, 'Java Edition 1.17.1', '756', 2730)
+ver(java, 'Java Edition 1.17.1 Release Candidate 2', '0x40000028', 2729)
+ver(java, 'Java Edition 1.17.1 Release Candidate 1', '0x40000027', 2728)
 ver(java, 'Java Edition 1.17.1 Pre-release 3', '0x40000026', 2727)
 ver(java, 'Java Edition 1.17.1 Pre-release 2', '0x40000025', 2726)
 ver(java, 'Java Edition 1.17.1 Pre-release 1', '0x40000024', 2725)
@@ -965,8 +972,11 @@ ver(java_af, 'Java Edition 2.0', 'Blue: 90<br>Red: 91<br>Purple: 92')
 -- Protocol version can be found at the end of the profile settings (Settings > Profile)
 
 -- 1.17
+ver(pocket, 'Bedrock Edition beta 1.17.20.23', 459)
+ver(pocket, 'Bedrock Edition beta 1.17.20.22', 456)
 ver(pocket, 'Bedrock Edition beta 1.17.20.21', 455)
 ver(pocket, 'Bedrock Edition beta 1.17.20.20', 453)
+ver(pocket, 'Bedrock Edition v1.17.10', 448)
 ver(pocket, 'Bedrock Edition beta 1.17.10.23', 448)
 ver(pocket, 'Bedrock Edition beta 1.17.10.22', 448)
 ver(pocket, 'Bedrock Edition beta 1.17.10.21', 441)
