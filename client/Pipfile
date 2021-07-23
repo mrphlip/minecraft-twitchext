@@ -9,6 +9,7 @@ appdirs = "*"
 pathlib2 = "*"
 Pillow = "*"
 wxPython = "*"
+pywin32-ctypes = "*"
 
 [dev-packages]
 pyinstaller = "*"
